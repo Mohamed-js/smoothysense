@@ -26,15 +26,15 @@ export default function HomeProductCard({ product }) {
   };
 
   return (
-    <div className="group sm:grid grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto gap-8 home-card">
+    <div className="group sm:grid grid-cols-1 max-w-2xl mx-auto gap-8 home-card w-full rounded-md overflow-hidden">
       <Link href={`/products/${product.slug}`} className="img-link">
-        <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+        <div className="aspect-w-9 aspect-h-10 w-full overflow-hidden bg-gray-200 ">
           <Image
             alt="product image"
             src={product.image}
             fill
             className={cn(
-              "object-cover duration-700 ease-in-out group-hover:opacity-75	",
+              "object-cover duration-700 ease-in-out group-hover:opacity-75",
               isLoading
                 ? "scale-110 blur-2xl grayscale"
                 : "scale-100 blur-0 grayscale-0"
@@ -44,13 +44,13 @@ export default function HomeProductCard({ product }) {
         </div>
       </Link>
       <div className="info">
-        <div className="mt-4 flex items-center justify-between text-base font-medium text-gray-900">
-          <h3 className="capitalize font-bold text-xl">{product.title}</h3>
+        <div className="mt-2 text-base font-medium text-gray-900">
+          <h3 className="capitalize font-bold">{product.title}</h3>
           <p>{product.price} EGP</p>
         </div>
-        <p className="mt-1 text-md italic text-gray-500 line-clamp-5">
+        {/* <p className="mt-1 text-md italic text-gray-500 line-clamp-5">
           {product.description}
-        </p>
+        </p> */}
 
         <button
           className="bg-green-400 text-white rounded p-2 px-4 mt-2"

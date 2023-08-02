@@ -32,12 +32,12 @@ const Login = () => {
           <Image
             alt={"SmoothySense"}
             className="rounded-lg max-h-28 object-contain sm:max-h-none mb-10"
-            src="/logo-transparent.png"
+            src="/logoo2.png"
             fill
           />
         </Link>
       </div>
-      <h1 className="text-center text-4xl font-bold mb-3 text-green-400">
+      <h1 className="text-center text-4xl font-bold mb-3 text-green-500">
         Login
       </h1>
 

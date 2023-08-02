@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import logo from "../public/logo-transparent.png";
+import logo from "../public/logoo2.png";
 import Link from "next/link";
 import { FaBars, FaShoppingBag } from "react-icons/fa";
 import { getToken } from "../auth";
@@ -52,11 +52,11 @@ const Navbar = () => {
         />
       )}
       {menuOpened && (
-        <div className="flex flex-col items-center fixed pt-20 top-20 left-0 h-screen w-full bg-[#000000e3] text-white text-2xl font-bold z-20 sm:hidden">
+        <div className="flex flex-col items-center pt-20 top-20 left-0 h-screen w-full bg-[#ffffffe3]  text-2xl font-bold z-20 sm:hidden">
           {!loggedIn && (
             <Link
               href="/login"
-              className="my-5 outline outline-green-400 text-green-400 rounded p-1 px-4"
+              className="my-5 outline outline-green-500 text-green-500 rounded p-1 px-4"
             >
               Login
             </Link>
@@ -67,17 +67,17 @@ const Navbar = () => {
           <Link href="/#products" className="my-5 cursor-pointer">
             Our Products
           </Link>
-          <Link href="/blogs" className="my-5">
+          {/* <Link href="/blogs" className="my-5">
             Blog
-          </Link>
+          </Link> */}
           <Link href="/#whyus" className="my-5 cursor-pointer">
             Why Us?
           </Link>
         </div>
       )}
-      <div className="flex justify-between p-4 items-end fixed top-0 left-0 w-full z-10 bg-[#000000e3] text-white">
+      <div className="flex justify-between p-4 items-end fixed top-0 left-0 w-full z-10 bg-white ">
         <div className="flex items-center flex-1">
-          <span className="h-12 relative">
+          <span className="h-16 relative">
             <Link href="/" className="my-5 cursor-pointer">
               <Image
                 priority
@@ -97,19 +97,19 @@ const Navbar = () => {
           <Link href="/#products" className="mx-2 cursor-pointer">
             Our Products
           </Link>
-          <Link href="/blogs" className="mr-2">
+          {/* <Link href="/blogs" className="mr-2">
             Blog
-          </Link>
+          </Link> */}
           <Link href="/#whyus" className="mr-2 cursor-pointer">
             Why Us?
           </Link>
         </div>
-        <div className="sm:hidden items-center text-green-400 flex">
+        <div className="sm:hidden items-center text-green-500 flex">
           {loggedIn && (
             <Link
               href="/cart"
               onClick={handleCartClick}
-              className="mr-4 mb-1 text-green-400 relative"
+              className="mr-4 mb-1 text-green-500 relative"
             >
               {cartItems.length > 0 && (
                 <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[-8px] w-5 h-5">
@@ -127,7 +127,7 @@ const Navbar = () => {
               <Link
                 href="/cart"
                 onClick={handleCartClick}
-                className="mr-4 mb-1 text-green-400"
+                className="mr-4 mb-1 text-green-500"
               >
                 {cartItems.length > 0 && (
                   <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[-8px] w-5 h-5">
@@ -140,7 +140,7 @@ const Navbar = () => {
           ) : (
             <Link
               href="/login"
-              className="mr-2 outline outline-green-400 text-green-400 rounded p-1 px-4"
+              className="mr-2 outline outline-green-500 text-green-500 rounded p-1 px-4"
             >
               Login
             </Link>

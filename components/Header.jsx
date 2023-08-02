@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import img from "../public/hero.jpg";
-import logo from "../public/logo-transparent.png";
+import logo from "../public/logoo2.png";
 import bghero from "../public/bghero-trans.png";
 // import bgvid from "../public/vid.mp4";
 import Link from "next/link";
@@ -31,7 +31,7 @@ export default function Header({ scrollHandler, whyUs }) {
     setLoggedIn(getToken());
     getCart();
     setTimeout(() => {
-      videoRef.current.play();
+      // videoRef.current.play();
     }, 1000);
   }, []);
 
@@ -45,7 +45,7 @@ export default function Header({ scrollHandler, whyUs }) {
   };
 
   return (
-    <header className="relative h-[90vh] sm:h-[80vh]">
+    <header className="relative">
       {notifyDialogOpened && (
         <NotifyDialog setDialogOpened={setNotifyDialogOpened} />
       )}
@@ -64,7 +64,7 @@ export default function Header({ scrollHandler, whyUs }) {
           {!loggedIn && (
             <Link
               href="/login"
-              className="my-5 outline outline-green-400 text-green-400 rounded p-1 px-4"
+              className="my-5 outline outline-green-500 text-green-500 rounded p-1 px-4"
             >
               Login
             </Link>
@@ -75,18 +75,18 @@ export default function Header({ scrollHandler, whyUs }) {
           <p onClick={scrollHandler} className="my-5 cursor-pointer">
             Our Products
           </p>
-          <Link href="/blogs" className="my-5">
+          {/* <Link href="/blogs" className="my-5">
             Blog
-          </Link>
+          </Link> */}
           <p onClick={whyUs} className="my-5 cursor-pointer">
             Why Us?
           </p>
         </div>
       )}
       {/* NAVBAR */}
-      <div className="flex justify-between p-4 items-end fixed top-0 left-0 w-full z-10 bg-[#000000e3] text-white">
+      <div className="flex justify-between p-4 w-full z-10 fixed top-0 left-0 bg-white items-center sm:shadow-md">
         <div className="flex items-center flex-1">
-          <span className="h-12 relative">
+          <span className="h-16 relative">
             <Link href="/" className="my-5 cursor-pointer">
               <Image
                 priority
@@ -106,19 +106,19 @@ export default function Header({ scrollHandler, whyUs }) {
           <p onClick={scrollHandler} className="mx-2 cursor-pointer">
             Our Products
           </p>
-          <Link href="/blogs" className="mr-2">
+          {/* <Link href="/blogs" className="mr-2">
             Blog
-          </Link>
+          </Link> */}
           <p onClick={whyUs} className="mr-2 cursor-pointer">
             Why Us?
           </p>
         </div>
-        <div className="sm:hidden items-center text-green-400 flex">
+        <div className="sm:hidden items-center text-green-500 flex">
           {loggedIn && (
             <Link
               href="/cart"
               onClick={handleCartClick}
-              className="mr-4 mb-1 text-green-400 relative"
+              className="mr-4 mb-1 text-green-500 relative"
             >
               {cartItems && cartItems.length > 0 && (
                 <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[-8px] w-5 h-5">
@@ -136,7 +136,7 @@ export default function Header({ scrollHandler, whyUs }) {
               <Link
                 href="/cart"
                 onClick={handleCartClick}
-                className="mr-4 mb-1 text-green-400"
+                className="mr-4 mb-1 text-green-500"
               >
                 {cartItems && cartItems.length > 0 && (
                   <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[-8px] w-5 h-5">
@@ -149,26 +149,26 @@ export default function Header({ scrollHandler, whyUs }) {
           ) : (
             <Link
               href="/login"
-              className="mr-2 outline outline-green-400 text-green-400 rounded p-1 px-4"
+              className="mr-2 outline outline-green-500 text-green-500 rounded p-1 px-4"
             >
               Login
             </Link>
           )}
         </div>
       </div>
-      <div className="mx-auto h-full">
-        <div className="relative shadow-xl sm:overflow-hidden h-full flex items-end">
+      <div className="mx-auto h-full pt-20 sm:pt-28">
+        <div className="relative sm:overflow-hidden h-full flex items-end">
           <div className="absolute inset-0 h-full">
-            <Image
+            {/* <Image
               priority
               fill
               className="h-full w-full object-cover"
               src={img}
               placeholder="blur"
               alt="SmoothySense"
-            />
+            /> */}
             {/* https://i.vimeocdn.com/video/810735117-9223db8da9dbc147c4873551cf481af6632c12877d7323e7f87a16d7390d8d79-d?mw=1300&mh=731&q=70 */}
-            <video
+            {/* <video
               ref={videoRef}
               loop
               muted
@@ -182,27 +182,29 @@ export default function Header({ scrollHandler, whyUs }) {
               }}
             >
               <source src={"/vid.mp4"}></source>
-            </video>
-            <div className="absolute inset-0 bg-gray-600 mix-blend-multiply" />
+            </video> */}
+            {/* <div className="absolute inset-0 bg-gray-600 mix-blend-multiply" /> */}
           </div>
-          <div className="flex justify-between w-full h-full pt-16 flex-col sm:flex-row">
-            <div className="relative px-4 pt-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8 sm:mb-10">
+          <div className="flex justify-center w-full h-full py-10 flex-col sm:flex-row text-center">
+            <div className="relative px-4 sm:px-6 lg:px-8 sm:mb-10">
               <h1 className="mt-1 font-bold text-gray-900 text-5xl xs:text-6xl sm:tracking-tight sm:text-7xl md:text-8xl">
-                <span className="block text-green-400">SmoothySense</span>
-                <p className="relative left-0 right-0 max-w-2xl text-2xl sm:text-3xl font-semibold uppercase tracking-wide text-white">
-                  A natural way to spice up your love life.
+                <span className="block text-green-500">SmoothySense</span>
+                <p className="relative left-0 right-0 max-w-2xl text-xl sm:text-2xl font-normal uppercase tracking-wide ">
+                  Welcome to SmoothySense, where natural beauty meets luxurious
+                  care. Experience the power of nature's finest ingredients,
+                  designed to make your hair shine with radiant vitality.
                 </p>
               </h1>
-              <div className="mt-5 max-w-xs sm:flex sm:max-w-none">
+              <div className="mt-5 max-w-xs flex sm:max-w-none justify-center">
                 <button
-                  className="flex items-center justify-center rounded-md border border-transparent bg-transparent px-4 py-3 text-base font-medium text-green-400 outline outline-green-400 shadow-sm hover:bg-green-400 hover:text-white sm:px-8 transition"
+                  className="flex items-center justify-center rounded-md border border-transparent bg-transparent px-4 py-3 text-base font-medium text-green-500 outline outline-green-500 shadow-sm hover:bg-green-400 hover:text-white sm:px-8 transition"
                   onClick={scrollHandler}
                 >
                   Shop now
                 </button>
               </div>
             </div>
-            <div className="relative h-full w-full">
+            {/* <div className="relative h-full w-full">
               <Image
                 priority
                 fill
@@ -214,7 +216,7 @@ export default function Header({ scrollHandler, whyUs }) {
                   transform: "rotate(180deg)",
                 }}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

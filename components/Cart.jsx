@@ -118,7 +118,7 @@ const Cart = ({ closeCart, cartItems, openNotification }) => {
               <div className="h-96 flex items-center justify-center uppercase flex-col">
                 <h2 className="text-lg">Cart is empty...</h2>
                 <Link href="/" onClick={() => closeCart()}>
-                  <button className="rounded-md border border-transparent outline outline-green-400 px-4 py-3 text-base font-medium shadow-sm hover:bg-green-400 text-green-400 hover:text-white sm:px-8 mt-5 transition duration-500 ">
+                  <button className="rounded-md border border-transparent outline outline-green-500 px-4 py-3 text-base font-medium shadow-sm hover:bg-green-400 text-green-500 hover:text-white sm:px-8 mt-5 transition duration-500 ">
                     Shop Now
                   </button>
                 </Link>

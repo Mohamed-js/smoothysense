@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.home-card:nth-of-type(2) .img-link {
+/* .home-card:nth-of-type(2) .img-link {
   grid-column-start: 2;
 }
 
 .home-card:nth-of-type(2) .info {
   grid-column-start: 1;
   grid-row-start: 1;
+} */
+.max-h-300 {
+  max-height: 300px;
 }
