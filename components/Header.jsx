@@ -60,7 +60,7 @@ export default function Header({ scrollHandler, whyUs }) {
       )}
       {/* MENU */}
       {menuOpened && (
-        <div className="flex flex-col items-center fixed pt-20 top-20 left-0 h-screen w-full bg-[#000000e3] text-white text-2xl font-bold z-20 sm:hidden">
+        <div className="flex flex-col items-center fixed pt-20 top-20 left-0 h-screen w-full bg-[#ffffffe8] text-2xl font-bold z-20 sm:hidden">
           {!loggedIn && (
             <Link
               href="/login"
