@@ -14,11 +14,11 @@ import { getItems } from "../slices/cartSlice";
 import NotifyDialog from "./OrderNotifyDialog";
 import ReactPlayer from "react-player";
 
-export default function Header({ scrollHandler, whyUs }) {
+export default function Header({ scrollHandler, whyUs, t }) {
   const cartItems = useSelector((state) => state.cart_items.value);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
   const dispatch = useDispatch();
-  const videoRef = useRef();
+  // const videoRef = useRef();
   const [menuOpened, setMenuOpened] = useState(false);
   const [cartOpened, setCartOpened] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -66,21 +66,24 @@ export default function Header({ scrollHandler, whyUs }) {
               href="/login"
               className="my-5 outline outline-green-500 text-green-500 rounded p-1 px-4"
             >
-              Login
+              {t("login")}
             </Link>
           )}
           <Link href="/" className="my-5 cursor-pointer">
-            Home
+            {t("home")}
           </Link>
           <p onClick={scrollHandler} className="my-5 cursor-pointer">
-            Our Products
+            {t("our_products")}
           </p>
           {/* <Link href="/blogs" className="my-5">
             Blog
           </Link> */}
           <p onClick={whyUs} className="my-5 cursor-pointer">
-            Why Us?
+            {t("why_us")}
           </p>
+          <Link href={"/" + t("lang_to")} className="my-5 cursor-pointer">
+            {t("lang")}
+          </Link>
         </div>
       )}
       {/* NAVBAR */}
@@ -101,16 +104,16 @@ export default function Header({ scrollHandler, whyUs }) {
         </div>
         <div className="hidden sm:flex items-center flex-row flex-1 text-base whitespace-nowrap font-semibold">
           <Link href="/" className="mr-2 cursor-pointer">
-            Home
+            {t("home")}
           </Link>
           <p onClick={scrollHandler} className="mx-2 cursor-pointer">
-            Our Products
+            {t("our_products")}
           </p>
           {/* <Link href="/blogs" className="mr-2">
             Blog
           </Link> */}
           <p onClick={whyUs} className="mr-2 cursor-pointer">
-            Why Us?
+            {t("why_us")}
           </p>
         </div>
         <div className="sm:hidden items-center text-green-500 flex">
@@ -118,7 +121,7 @@ export default function Header({ scrollHandler, whyUs }) {
             <Link
               href="/cart"
               onClick={handleCartClick}
-              className="mr-4 mb-1 text-green-500 relative"
+              className="mx-4 mb-1 text-green-500 relative"
             >
               {cartItems && cartItems.length > 0 && (
                 <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[-8px] w-5 h-5">
@@ -136,7 +139,7 @@ export default function Header({ scrollHandler, whyUs }) {
               <Link
                 href="/cart"
                 onClick={handleCartClick}
-                className="mr-4 mb-1 text-green-500"
+                className="mx-4 mb-1 text-green-500"
               >
                 {cartItems && cartItems.length > 0 && (
                   <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[-8px] w-5 h-5">
@@ -149,11 +152,17 @@ export default function Header({ scrollHandler, whyUs }) {
           ) : (
             <Link
               href="/login"
-              className="mr-2 outline outline-green-500 text-green-500 rounded p-1 px-4"
+              className="mx-2 outline outline-green-500 text-green-500 rounded p-1 px-4"
             >
-              Login
+              {t("login")}
             </Link>
           )}
+          <Link
+            href={"/" + t("lang_to")}
+            className="mx-2 outline outline-green-500 text-green-500 rounded p-1 px-4"
+          >
+            {t("lang")}
+          </Link>
         </div>
       </div>
       <div className="mx-auto h-full pt-20 sm:pt-28">
@@ -187,12 +196,10 @@ export default function Header({ scrollHandler, whyUs }) {
           </div>
           <div className="flex justify-center w-full h-full py-10 flex-col sm:flex-row text-center">
             <div className="relative px-4 sm:px-6 lg:px-8 sm:mb-10">
-              <h1 className="mt-1 font-bold text-gray-900 text-5xl xs:text-6xl sm:tracking-tight sm:text-7xl md:text-8xl">
+              <h1 className="mt-1 font-bold text-gray-900 text-4xl xs:text-6xl sm:tracking-tight sm:text-7xl md:text-8xl">
                 <span className="block text-green-500">SmoothySense</span>
-                <p className="relative left-0 right-0 max-w-2xl text-xl sm:text-2xl font-normal uppercase tracking-wide ">
-                  Welcome to SmoothySense, where natural beauty meets luxurious
-                  care. Experience the power of nature's finest ingredients,
-                  designed to make your hair shine with radiant vitality.
+                <p className="relative left-0 right-0 max-w-2xl text-lg sm:text-2xl font-thin uppercase tracking-wide mt-2">
+                  {t("header")}
                 </p>
               </h1>
               <div className="mt-5 max-w-xs flex sm:max-w-none justify-center">
@@ -200,7 +207,7 @@ export default function Header({ scrollHandler, whyUs }) {
                   className="flex items-center justify-center rounded-md border border-transparent bg-transparent px-4 py-3 text-base font-medium text-green-500 outline outline-green-500 shadow-sm hover:bg-green-400 hover:text-white sm:px-8 transition"
                   onClick={scrollHandler}
                 >
-                  Shop now
+                  {t("shop_now")}
                 </button>
               </div>
             </div>

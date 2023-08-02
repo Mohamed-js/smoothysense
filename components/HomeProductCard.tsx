@@ -9,7 +9,7 @@ function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function HomeProductCard({ product }) {
+export default function HomeProductCard({ product, t }) {
   const [isLoading, setLoading] = useState(true);
   const [dialogOpened, setDialogOpened] = useState(false);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
@@ -44,8 +44,10 @@ export default function HomeProductCard({ product }) {
         </div>
       </Link>
       <div className="info">
-        <div className="mt-2 text-base font-medium text-gray-900">
-          <h3 className="capitalize font-bold">{product.title}</h3>
+        <div className="text-base font-semibold text-gray-900">
+          <h3 className="capitalize font-thin text-gray-600 leading-5 mt-1">
+            {product.title}
+          </h3>
           <p>{product.price} EGP</p>
         </div>
         {/* <p className="mt-1 text-md italic text-gray-500 line-clamp-5">
@@ -56,7 +58,7 @@ export default function HomeProductCard({ product }) {
           className="bg-green-400 text-white rounded p-2 px-4 mt-2"
           onClick={handleClick}
         >
-          ADD TO CART
+          {t("add_to_cart")}
         </button>
       </div>
 
