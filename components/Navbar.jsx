@@ -112,7 +112,7 @@ const Navbar = () => {
               className="mr-4 mb-1 text-green-500 relative"
             >
               {cartItems.length > 0 && (
-                <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[-8px] w-5 h-5">
+                <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[5px] w-5 h-5">
                   {cartItems.length}
                 </span>
               )}
@@ -130,7 +130,7 @@ const Navbar = () => {
                 className="mr-4 mb-1 text-green-500"
               >
                 {cartItems.length > 0 && (
-                  <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[-8px] w-5 h-5">
+                  <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[5px] w-5 h-5">
                     {cartItems.length}
                   </span>
                 )}
