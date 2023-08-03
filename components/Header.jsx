@@ -81,7 +81,11 @@ export default function Header({ scrollHandler, whyUs, t }) {
           <p onClick={whyUs} className="my-5 cursor-pointer">
             {t("why_us")}
           </p>
-          <Link href={"/" + t("lang_to")} className="my-5 cursor-pointer">
+          <Link
+            href={"/"}
+            locale={t("lang_to")}
+            className="my-5 cursor-pointer"
+          >
             {t("lang")}
           </Link>
         </div>
@@ -158,7 +162,8 @@ export default function Header({ scrollHandler, whyUs, t }) {
             </Link>
           )}
           <Link
-            href={"/" + t("lang_to")}
+            href={"/"}
+            locale={t("lang_to")}
             className="mx-2 outline outline-green-500 text-green-500 rounded p-1 px-4"
           >
             {t("lang")}
