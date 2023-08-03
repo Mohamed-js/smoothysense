@@ -26,7 +26,7 @@ export default function HomeProductCard({ product, t }) {
   };
 
   return (
-    <div className="group sm:grid grid-cols-1 max-w-2xl mx-auto gap-8 home-card w-full rounded-md overflow-hidden">
+    <div className="group grid grid-cols-1 max-w-2xl mx-auto gap-2 home-card w-full rounded-md overflow-hidden">
       <Link href={`/products/${product.slug}`} className="img-link">
         <div className="aspect-w-9 aspect-h-10 w-full overflow-hidden bg-gray-200 ">
           <Image
@@ -45,21 +45,27 @@ export default function HomeProductCard({ product, t }) {
       </Link>
       <div className="info">
         <div className="text-base font-semibold text-gray-900">
-          <h3 className="capitalize font-thin text-gray-600 leading-5 mt-1">
+          <h3
+            className="capitalize font-thin text-gray-600 leading-5 mt-1"
+            dir="ltr"
+          >
             {product.title}
           </h3>
-          <p>{product.price} EGP</p>
         </div>
         {/* <p className="mt-1 text-md italic text-gray-500 line-clamp-5">
           {product.description}
         </p> */}
-
-        <button
-          className="bg-green-400 text-white rounded p-2 px-4 mt-2"
-          onClick={handleClick}
-        >
-          {t("add_to_cart")}
-        </button>
+        <div className="flex justify-between items-center mt-2">
+          <button
+            className="bg-green-400 text-white rounded p-1 px-3 text-sm sm:text-base"
+            onClick={handleClick}
+          >
+            {t("add_to_cart")}
+          </button>
+          <p dir="ltr" className="text-sm sm:text-base">
+            {product.price} EGP
+          </p>
+        </div>
       </div>
 
       {dialogOpened && (

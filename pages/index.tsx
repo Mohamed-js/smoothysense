@@ -62,7 +62,7 @@ export default function Gallery({ products }) {
               <HomeProductCard product={product} key={product._id} />
             ))}
         </div> */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 lg:gap-20">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-5 lg:gap-10">
           {products &&
             products.map((product) => (
               <HomeProductCard product={product} key={product._id} t={t} />
