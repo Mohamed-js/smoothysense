@@ -3,7 +3,7 @@
     "en",
     "ar"
   ],
-  "defaultLocale": "ar",
+  "defaultLocale": "en",
   "pages": {
     "*": [
       "common"

@@ -9,8 +9,10 @@ import Cart from "./Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { getItems } from "../slices/cartSlice";
 import NotifyDialog from "./OrderNotifyDialog";
+import { useRouter } from "next/router";
 
-const Navbar = () => {
+const Navbar = ({ t }) => {
+  const router = useRouter();
   const [menuOpened, setMenuOpened] = useState(false);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
   const [cartOpened, setCartOpened] = useState(false);
@@ -58,24 +60,24 @@ const Navbar = () => {
               href="/login"
               className="my-5 outline outline-green-500 text-green-500 rounded p-1 px-4"
             >
-              Login
+              {t("login")}
             </Link>
           )}
           <Link href="/" className="my-5 cursor-pointer">
-            Home
+            {t("home")}
           </Link>
           <Link href="/#products" className="my-5 cursor-pointer">
-            Our Products
+            {t("our_products")}
           </Link>
           {/* <Link href="/blogs" className="my-5">
             Blog
           </Link> */}
           <Link href="/#whyus" className="my-5 cursor-pointer">
-            Why Us?
+            {t("why_us")}
           </Link>
         </div>
       )}
-      <div className="flex justify-between p-4 items-end fixed top-0 left-0 w-full z-10 bg-white ">
+      <div className="flex justify-between p-4 w-full z-10 fixed top-0 left-0 bg-white items-center sm:shadow-md">
         <div className="flex items-center flex-1">
           <span className="h-16 relative">
             <Link href="/" className="my-5 cursor-pointer">
@@ -85,23 +87,23 @@ const Navbar = () => {
                 className="h-full w-full object-contain"
                 src={logo}
                 placeholder="blur"
-                alt="Coffee grinder"
+                alt="SmoothySense"
               />
             </Link>
           </span>
         </div>
         <div className="hidden sm:flex items-center flex-row flex-1 text-base whitespace-nowrap font-semibold ">
           <Link href="/" className="mx-2 cursor-pointer">
-            Home
+            {t("home")}
           </Link>
           <Link href="/#products" className="mx-2 cursor-pointer">
-            Our Products
+            {t("our_products")}
           </Link>
           {/* <Link href="/blogs" className="mr-2">
             Blog
           </Link> */}
           <Link href="/#whyus" className="mr-2 cursor-pointer">
-            Why Us?
+            {t("why_us")}
           </Link>
         </div>
         <div className="sm:hidden items-center text-green-500 flex">
@@ -127,9 +129,9 @@ const Navbar = () => {
               <Link
                 href="/cart"
                 onClick={handleCartClick}
-                className="mr-4 mb-1 text-green-500"
+                className="mx-4 mb-1 text-green-500"
               >
-                {cartItems.length > 0 && (
+                {cartItems && cartItems.length > 0 && (
                   <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[5px] w-5 h-5">
                     {cartItems.length}
                   </span>
@@ -142,9 +144,16 @@ const Navbar = () => {
               href="/login"
               className="mr-2 outline outline-green-500 text-green-500 rounded p-1 px-4"
             >
-              Login
+              {t("login")}
             </Link>
           )}
+          <Link
+            href={router.asPath}
+            locale={t("lang_to")}
+            className="mx-2 outline outline-green-500 text-green-500 rounded p-1 px-4"
+          >
+            {t("lang")}
+          </Link>
         </div>
       </div>
     </>
