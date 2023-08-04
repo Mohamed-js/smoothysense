@@ -82,20 +82,27 @@ export default function Product({ product }) {
   );
 }
 
-export async function getStaticProps({ locale, params }) {
+export async function getStaticProps({ params, locale }) {
   const product = await getProduct(params.slug);
 
   return {
-    props: { ...(await serverSideTranslations(locale)), product: product },
+    props: { product: product, ...(await serverSideTranslations(locale)) },
   };
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const products = await getProducts();
-
-  const paths = products.map((product) => ({
-    params: { slug: product.slug },
-  }));
+  const paths = [];
+  locales.forEach((locale) => {
+    products.forEach((product) => {
+      paths.push({
+        params: {
+          slug: product.slug,
+        },
+        locale,
+      });
+    });
+  });
 
   return {
     paths: paths,

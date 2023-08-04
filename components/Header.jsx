@@ -56,6 +56,7 @@ export default function Header({ scrollHandler, whyUs, t }) {
           closeCart={() => setCartOpened(false)}
           cartItems={cartItems}
           openNotification={() => setNotifyDialogOpened(true)}
+          t={t}
         />
       )}
       {/* MENU */}

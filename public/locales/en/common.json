@@ -17,5 +17,13 @@
     "experience": "Expertise & Experience",
     "experience_description": "Our team of experts has years of experience in developing and manufacturing hair care products. We are dedicated to creating products that enhance your pleasure and improve your health.",
     "add_to_cart": "Buy",
-    "description": "Description"
+    "description": "Description",
+    "close": "Close",
+    "egp": "EGP",
+    "unit": "Unit",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "proceed_checkout": "Proceed To Checkout",
+    "free": "Free"
 }

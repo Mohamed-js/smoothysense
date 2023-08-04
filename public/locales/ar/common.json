@@ -17,5 +17,13 @@
     "experience": "الخبرة والتجربة",
     "experience_description": "يتمتع فريق الخبراء لدينا بسنوات من الخبرة في تطوير وتصنيع منتجات العناية بالشعر. نحن ملتزمون بابتكار منتجات تعزز سعادتك وتحسن صحتك.",
     "add_to_cart": "شراء",
-    "description": "وصف المنتج"
+    "description": "وصف المنتج",
+    "close": "اغلاق",
+    "egp": "EGP",
+    "unit": "Unit",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "proceed_checkout": "Proceed To Checkout",
+    "free": "Free"
 }

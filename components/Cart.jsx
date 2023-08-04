@@ -6,13 +6,13 @@ import { useDispatch } from "react-redux";
 import { getItems } from "../slices/cartSlice";
 import Checkout from "./Checkout";
 
-const Cart = ({ closeCart, cartItems, openNotification }) => {
+const Cart = ({ closeCart, cartItems, openNotification, t }) => {
   const [checkoutOpened, setCheckoutOpened] = useState(false);
 
   return (
     <div className="h-full w-full fixed top-0 left-0 flex justify-center items-center z-50 bg-[#17171771]">
       <div className="fixed top-0 bottom-0 left-0 right-0 z-50 h-full box-border outline-2 outline outline-transparent outline-offset-2">
-        <div className="absolute  top-0 right-0 bottom-0 left-0 ">
+        <div className="absolute top-0 right-0 bottom-0 left-0 ">
           <div className="overflow-auto relative overflow-x-hidden top-0 bg-white z-[5000] h-full w-full ml-auto translate-x-0 lg:w-2/4 px-4">
             <header className="sticky top-0 bg-white mb-4 flex justify-between items-center py-4">
               <button
@@ -26,7 +26,9 @@ const Cart = ({ closeCart, cartItems, openNotification }) => {
                   <span className="flex justify-center items-center text-2xl ease-in-out duration-500  w-10 h-10 border hover:border-gray-300">
                     ×
                   </span>
-                  <span className="ml-2 text-accent-7 text-sm ">CLOSE</span>
+                  <span className="mx-2 text-accent-7 text-sm ">
+                    {t("close")}
+                  </span>
                 </div>
               </button>
               <div className="flex">
@@ -68,7 +70,7 @@ const Cart = ({ closeCart, cartItems, openNotification }) => {
                       <li className="flex justify-between py-1">
                         <span>Subtotal</span>
                         <span>
-                          $
+                          EGP
                           {cartItems.reduce(
                             (accumulator, item) =>
                               accumulator + item.quantity * item.product.price,
@@ -85,7 +87,7 @@ const Cart = ({ closeCart, cartItems, openNotification }) => {
                     <div className="flex justify-between border-t border-accent-2 py-3 font-bold mb-2">
                       <span className="text-lg">Total</span>
                       <span>
-                        $
+                        EGP
                         {cartItems.reduce(
                           (accumulator, item) =>
                             accumulator + item.quantity * item.product.price,
@@ -167,8 +169,8 @@ export const CartCard = ({ item }) => {
     <>
       <div key={item.product._id} className="pt-2">
         <div className="flex justify-between items-start py-3">
-          <div className="flex">
-            <div className="img-parent pr-3">
+          <div className="flex gap-4">
+            <div className="img-parent">
               <Image
                 src={item.product.image}
                 width={80}

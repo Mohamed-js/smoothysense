@@ -51,6 +51,7 @@ const Navbar = ({ t }) => {
           closeCart={() => setCartOpened(false)}
           cartItems={cartItems}
           openNotification={() => setNotifyDialogOpened(true)}
+          t={t}
         />
       )}
       {menuOpened && (
