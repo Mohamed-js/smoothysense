@@ -13,7 +13,11 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
     <div className="h-full w-full fixed top-0 left-0 flex justify-center items-center z-50 bg-[#17171771]">
       <div className="fixed top-0 bottom-0 left-0 right-0 z-50 h-full box-border outline-2 outline outline-transparent outline-offset-2">
         <div className="absolute top-0 right-0 bottom-0 left-0 ">
-          <div className="overflow-auto relative overflow-x-hidden top-0 bg-white z-[5000] h-full w-full ml-auto translate-x-0 lg:w-2/4 px-4">
+          <div
+            className={`
+              overflow-auto relative overflow-x-hidden top-0 bg-white z-[5000] h-full w-full translate-x-0 lg:w-2/4 px-4 
+               ${t("lang_to") !== "en" ? " ml-auto" : " mr-auto"} `}
+          >
             <header className="sticky top-0 bg-white mb-4 flex justify-between items-center py-4">
               <button
                 aria-label="Close"
@@ -26,7 +30,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
                   <span className="flex justify-center items-center text-2xl ease-in-out duration-500  w-10 h-10 border hover:border-gray-300">
                     ×
                   </span>
-                  <span className="mx-2 text-accent-7 text-sm ">
+                  <span className="mx-2 text-accent-7 text-sm">
                     {t("close")}
                   </span>
                 </div>
@@ -49,7 +53,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
                 </svg>
               </div>
             </header>
-            {/* {console.log(cartItems)} */}
+            {console.log(cartItems)}
             {!checkoutOpened && (
               <>
                 {cartItems.length > 0 &&
@@ -60,6 +64,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
                         item={item}
                         key={item._id + item.product.title}
                         cartItems={cartItems}
+                        t={t}
                       />
                     );
                   })}
@@ -68,31 +73,47 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
                   <div className="sticky bottom-0 bg-white flex-shrink-0 px-3 py-3 sm:px-3 w-full right-0 left-0 bg-accent-0 border-t text-sm">
                     <ul className="pb-2">
                       <li className="flex justify-between py-1">
-                        <span>Subtotal</span>
+                        <span>{t("subtotal")}</span>
+
+                        <span
+                          className={`flex gap-1 ${
+                            t("lang_to") === "en" && " flex-row-reverse"
+                          }`}
+                        >
+                          <span>{t("egp")} </span>
+                          <span>
+                            {" "}
+                            {cartItems.reduce(
+                              (accumulator, item) =>
+                                accumulator +
+                                item.quantity * item.product.price,
+                              0
+                            )}
+                          </span>
+                        </span>
+                      </li>
+                      <li className="flex justify-between py-1">
+                        <span>{t("shipping")}</span>
+                        <span className="font-semibold">{t("free")}</span>
+                      </li>
+                      <li className="flex justify-between py-1"></li>
+                    </ul>
+                    <div className="flex justify-between border-t border-accent-2 py-3 font-bold mb-2">
+                      <span className="text-lg">{t("total")}</span>
+                      <span
+                        className={`flex gap-1 ${
+                          t("lang_to") === "en" && " flex-row-reverse"
+                        }`}
+                      >
+                        <span>{t("egp")} </span>
                         <span>
-                          EGP
+                          {" "}
                           {cartItems.reduce(
                             (accumulator, item) =>
                               accumulator + item.quantity * item.product.price,
                             0
                           )}
                         </span>
-                      </li>
-                      <li className="flex justify-between py-1">
-                        <span>Shipping</span>
-                        <span className="font-semibold">FREE</span>
-                      </li>
-                      <li className="flex justify-between py-1"></li>
-                    </ul>
-                    <div className="flex justify-between border-t border-accent-2 py-3 font-bold mb-2">
-                      <span className="text-lg">Total</span>
-                      <span>
-                        EGP
-                        {cartItems.reduce(
-                          (accumulator, item) =>
-                            accumulator + item.quantity * item.product.price,
-                          0
-                        )}
                       </span>
                     </div>
                     <div>
@@ -101,7 +122,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
                         onClick={() => setCheckoutOpened(true)}
                         data-variant="flat"
                       >
-                        Proceed to Checkout
+                        {t("proceed_checkout")}
                       </button>
                     </div>
                   </div>
@@ -111,6 +132,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
 
             {checkoutOpened && (
               <Checkout
+                t={t}
                 closeCart={closeCart}
                 openNotification={openNotification}
               />
@@ -118,10 +140,10 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
 
             {cartItems.length === 0 && (
               <div className="h-96 flex items-center justify-center uppercase flex-col">
-                <h2 className="text-lg">Cart is empty...</h2>
+                <h2 className="text-lg">{t("cart_is_empty")}</h2>
                 <Link href="/" onClick={() => closeCart()}>
                   <button className="rounded-md border border-transparent outline outline-green-500 px-4 py-3 text-base font-medium shadow-sm hover:bg-green-400 text-green-500 hover:text-white sm:px-8 mt-5 transition duration-500 ">
-                    Shop Now
+                    {t("shop_now")}
                   </button>
                 </Link>
               </div>
@@ -135,7 +157,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
 
 export default Cart;
 
-export const CartCard = ({ item }) => {
+export const CartCard = ({ item, t }) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const DeleteProduct = async () => {
@@ -180,11 +202,14 @@ export const CartCard = ({ item }) => {
               />
             </div>
             <div>
-              <h3 className="text-normal font-bold sm:text-2xl capitalize">
+              <h3 className="text-normal font-thin sm:text-xl capitalize text-gray-600">
                 {item.product.title}
               </h3>
-              <h3 className="text-normal font-base sm:text-xl capitalize">
-                {item.product.price} EGP/unit
+              <h3 className="text-normal font-semibold sm:text-xl capitalize">
+                {item.product.price}{" "}
+                <span className="text-sm">
+                  {t("egp")}/{t("unit")}
+                </span>
               </h3>
             </div>
           </div>

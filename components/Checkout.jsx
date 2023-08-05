@@ -3,7 +3,7 @@ import { getItems } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { placeOrder } from "../helpers";
 
-const Checkout = ({ closeCart, openNotification }) => {
+const Checkout = ({ closeCart, openNotification, t }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -20,21 +20,21 @@ const Checkout = ({ closeCart, openNotification }) => {
 
   return (
     <div>
-      <h1 className="text-center text-2xl font-semibold">Checkout</h1>
+      <h1 className="text-center text-2xl font-semibold">{t("checkout")}</h1>
       <br />
       <form onSubmit={handleSubmit}>
         <div className="flex justify-between">
           <input
             type="text"
             name="first_name"
-            placeholder="First name"
-            className="p-2 border rounded w-1/2 focus:outline mt-3 mr-3"
+            placeholder={t("first_name")}
+            className="p-2 border rounded w-1/2 focus:outline mt-3 mx-3"
             required
           />
           <input
             type="text"
             name="last_name"
-            placeholder="Last name"
+            placeholder={t("last_name")}
             className="p-2 border rounded w-1/2 focus:outline mt-3"
             required
           />
@@ -43,14 +43,14 @@ const Checkout = ({ closeCart, openNotification }) => {
           <input
             type="text"
             name="country"
-            placeholder="Country"
-            className="p-2 border rounded w-1/2 focus:outline mt-3 mr-3"
+            placeholder={t("country")}
+            className="p-2 border rounded w-1/2 focus:outline mt-3 mx-3"
             required
           />
           <input
             type="text"
             name="city"
-            placeholder="City"
+            placeholder={t("city")}
             className="p-2 border rounded w-1/2 focus:outline mt-3"
             required
           />
@@ -58,15 +58,15 @@ const Checkout = ({ closeCart, openNotification }) => {
         <input
           type="tel"
           name="phone"
-          placeholder="Phone"
-          className="p-2 border rounded w-full focus:outline mt-3 mr-3"
+          placeholder={t("phone")}
+          className="p-2 border rounded w-[97%] focus:outline mt-3 mx-3"
           required
         />
         <textarea
           type="text"
           name="address"
-          placeholder="Address"
-          className="p-2 border rounded w-full focus:outline mt-3 mb-1"
+          placeholder={t("address")}
+          className="p-2 border rounded w-[97%] focus:outline mt-3 mb-1 mx-3"
           required
         ></textarea>
 
@@ -74,7 +74,7 @@ const Checkout = ({ closeCart, openNotification }) => {
           className="text-lg w-full bg-black text-white pt-4 pb-4 text-center "
           data-variant="flat"
         >
-          Confirm Order
+          {t("confirm_order")}
         </button>
       </form>
     </div>

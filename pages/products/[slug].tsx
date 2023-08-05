@@ -17,9 +17,12 @@ export default function Product({ product }) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
   useEffect(() => {
-    setLoggedIn(getToken());
+    checktoken();
   }, []);
 
+  async function checktoken() {
+    setLoggedIn(await getToken());
+  }
   const handleClick = () => {
     if (loggedIn) {
       return setDialogOpened(true);
@@ -48,7 +51,7 @@ export default function Product({ product }) {
                 {product.title}
               </h1>
               <h1 className="mt-3 text-xl font-bold sm:text-2xl sm:tracking-tight lg:text-2xl">
-                {product.price} EGP
+                {product.price} {t("egp")}
               </h1>
               <div className="mt-10 mb-5 border-t border-gray-200 pt-10 font-bold">
                 {t("description")}
@@ -69,10 +72,11 @@ export default function Product({ product }) {
                 <CartDialog
                   product={product}
                   setDialogOpened={setDialogOpened}
+                  t={t}
                 />
               )}
               {notifyDialogOpened && (
-                <NotifyDialog setDialogOpened={setNotifyDialogOpened} />
+                <NotifyDialog setDialogOpened={setNotifyDialogOpened} t={t} />
               )}
             </div>
           </div>

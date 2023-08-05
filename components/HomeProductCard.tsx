@@ -15,8 +15,12 @@ export default function HomeProductCard({ product, t }) {
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
-    setLoggedIn(getToken());
+    checktoken();
   }, []);
+
+  async function checktoken() {
+    setLoggedIn(await getToken());
+  }
 
   const handleClick = () => {
     if (loggedIn) {
@@ -28,7 +32,7 @@ export default function HomeProductCard({ product, t }) {
   return (
     <div className="group grid grid-cols-1 max-w-2xl mx-auto gap-2 home-card w-full rounded-md overflow-hidden">
       <Link href={`/products/${product.slug}`} className="img-link">
-        <div className="aspect-w-9 aspect-h-10 w-full overflow-hidden bg-gray-200 ">
+        <div className="aspect-w-9 aspect-h-10 w-full overflow-hidden bg-gray-200">
           <Image
             alt="product image"
             src={product.image}
@@ -69,10 +73,10 @@ export default function HomeProductCard({ product, t }) {
       </div>
 
       {dialogOpened && (
-        <CartDialog product={product} setDialogOpened={setDialogOpened} />
+        <CartDialog product={product} setDialogOpened={setDialogOpened} t={t} />
       )}
       {notifyDialogOpened && (
-        <NotifyDialog setDialogOpened={setNotifyDialogOpened} />
+        <NotifyDialog setDialogOpened={setNotifyDialogOpened} t={t} />
       )}
     </div>
   );

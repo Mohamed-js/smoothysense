@@ -3,7 +3,7 @@ import { addToCart } from "../helpers";
 import { getItems } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 
-const CartDialog = ({ product, setDialogOpened }) => {
+const CartDialog = ({ product, setDialogOpened, t }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
@@ -34,7 +34,7 @@ const CartDialog = ({ product, setDialogOpened }) => {
         <hr />
         <br />
         <form onSubmit={handleSubmit} className="flex flex-col justify-between">
-          <label htmlFor="quantity">How many pieces?</label>
+          <label htmlFor="quantity">{t("how_many_pieces")}</label>
           <input
             type="number"
             name="quantity"
@@ -58,7 +58,7 @@ const CartDialog = ({ product, setDialogOpened }) => {
             } rounded p-2 px-4 mt-2 justify-self-end`}
             disabled={loading}
           >
-            ADD
+            {t("add")}
           </button>
         </form>
       </div>

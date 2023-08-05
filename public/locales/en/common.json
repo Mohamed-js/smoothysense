@@ -25,5 +25,19 @@
     "subtotal": "Subtotal",
     "shipping": "Shipping",
     "proceed_checkout": "Proceed To Checkout",
-    "free": "Free"
+    "free": "Free",
+    "confirm_order": "Confirm Order",
+    "checkout": "Checkout",
+    "order_successfully": "Order placed successfully.",
+    "notification": "Notification",
+    "must_login": "You must login first.",
+    "how_many_pieces": "How many pieces?",
+    "add": "Add",
+    "cart_is_empty": "Cart is empty...",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "phone": "Phone number",
+    "address": "Your address",
+    "country": "Country",
+    "city": "City"
 }

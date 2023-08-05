@@ -21,12 +21,12 @@ const Navbar = ({ t }) => {
   const dispatch = useDispatch();
 
   const getCart = async () => {
+    setLoggedIn(await getToken());
     const res = await getCartItems();
     dispatch(getItems(res));
   };
 
   useEffect(() => {
-    setLoggedIn(getToken());
     getCart();
   }, []);
 
@@ -43,7 +43,7 @@ const Navbar = ({ t }) => {
     <>
       {/* Notification */}
       {notifyDialogOpened && (
-        <NotifyDialog setDialogOpened={setNotifyDialogOpened} />
+        <NotifyDialog setDialogOpened={setNotifyDialogOpened} t={t} />
       )}
       {/* CART */}
       {cartOpened && (
@@ -55,7 +55,7 @@ const Navbar = ({ t }) => {
         />
       )}
       {menuOpened && (
-        <div className="flex flex-col items-center pt-20 top-20 left-0 h-screen w-full bg-[#ffffffe3]  text-2xl font-bold z-20 sm:hidden">
+        <div className="flex flex-col items-center pt-20 top-20 left-0 h-screen w-full bg-[#ffffffe3]  text-2xl font-bold z-20 sm:hidden fixed">
           {!loggedIn && (
             <Link
               href="/login"

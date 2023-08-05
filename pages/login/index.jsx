@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     const res = await userLogin(credentials);
-
+    console.log(res);
     if (res.message) {
       setLoading(false);
       setToken(res.token);
@@ -28,16 +28,14 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full w-full min-h-[91vh]">
       <div className="flex items-center h-48 relative w-full">
-        <Link href="/">
-          <Image
-            alt={"SmoothySense"}
-            className="rounded-lg max-h-28 object-contain sm:max-h-none mb-10"
-            src="/logoo2.png"
-            fill
-          />
-        </Link>
+        <Image
+          alt={"SmoothySense"}
+          className="rounded-lg max-h-28 object-contain sm:max-h-none mb-10"
+          src="/logoo2.png"
+          fill
+        />
       </div>
-      <h1 className="text-center text-4xl font-bold mb-3 text-green-500">
+      <h1 className="text-center text-4xl font-bold my-3 text-green-500">
         Login
       </h1>
 

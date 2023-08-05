@@ -24,15 +24,12 @@ export default function Header({ scrollHandler, whyUs, t }) {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const getCart = async () => {
+    setLoggedIn(await getToken());
     const res = await getCartItems();
     dispatch(getItems(res));
   };
   useEffect(() => {
-    setLoggedIn(getToken());
     getCart();
-    setTimeout(() => {
-      // videoRef.current.play();
-    }, 1000);
   }, []);
 
   const handleClick = () => {
@@ -47,7 +44,7 @@ export default function Header({ scrollHandler, whyUs, t }) {
   return (
     <header className="relative">
       {notifyDialogOpened && (
-        <NotifyDialog setDialogOpened={setNotifyDialogOpened} />
+        <NotifyDialog setDialogOpened={setNotifyDialogOpened} t={t} />
       )}
       <div className="absolute inset-x-0 bottom-0 h-1\2 bg-gray-100" />
       {/* CART */}

@@ -11,6 +11,7 @@ export async function getProducts() {
     };
 
     const res = await fetch(host + `/products`, options);
+
     return await res.json();
   } catch (error) {
     console.log(error);
@@ -70,9 +71,11 @@ export const getCartItems = async (setter) => {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${await getToken()}`,
       },
     };
+
+    console.log(`Bearer ${await getToken()}`);
 
     const res = await fetch(host + `/cart-items`, options);
     return await res.json();
@@ -86,7 +89,7 @@ export const addToCart = async (product, quantity) => {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${await getToken()}`,
       },
       method: "POST",
       body: JSON.stringify({ product, quantity }),
@@ -104,7 +107,7 @@ export const removeFromCart = async (product) => {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${await getToken()}`,
       },
       method: "DELETE",
     };
@@ -121,7 +124,7 @@ export const minusFromCart = async (product) => {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${await getToken()}`,
       },
       method: "PATCH",
     };
@@ -138,7 +141,7 @@ export const placeOrder = async (order) => {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`,
+        Authorization: `Bearer ${await getToken()}`,
       },
       method: "POST",
       body: JSON.stringify(order),
