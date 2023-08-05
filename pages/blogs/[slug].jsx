@@ -2,8 +2,13 @@ import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import { useState } from "react";
 import { getBlogPost, getBlogPosts } from "../../helpers";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
 
 const Topic = ({ post }) => {
+  const router = useRouter();
+  const { t } = useTranslation();
   const [isLoading, setLoading] = useState(true);
 
   function cn(...classes) {
@@ -11,8 +16,8 @@ const Topic = ({ post }) => {
   }
 
   return (
-    <>
-      <Navbar />
+    <div dir={router.locale === "ar" ? "rtl" : "ltr"}>
+      <Navbar t={t} />
       <div
         className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-20 "
         id="topics"
@@ -47,28 +52,34 @@ const Topic = ({ post }) => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
 export default Topic;
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
   const post = await getBlogPost(params.slug);
 
   return {
     props: {
       post: post,
+      ...(await serverSideTranslations(locale)),
     },
   };
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const posts = await getBlogPosts();
-
-  const paths = posts.map((post) => ({
-    params: { slug: post.slug },
-  }));
+  const paths = [];
+  locales.forEach((locale) => {
+    posts.forEach((post) => {
+      paths.push({
+        params: { slug: post.slug },
+        locale,
+      });
+    });
+  });
 
   return {
     paths: paths,

@@ -1,8 +1,12 @@
+import { useRouter } from "next/router";
 import Navbar from "../../components/Navbar";
 import TopicCard from "../../components/TopicCard";
 import { getBlogPosts } from "../../helpers";
-
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const Blogs = ({ posts }) => {
+  const router = useRouter();
+  const { t } = useTranslation();
   const topics = [
     {
       title: "Why natural products?",
@@ -21,8 +25,8 @@ const Blogs = ({ posts }) => {
     },
   ];
   return (
-    <>
-      <Navbar />
+    <div dir={router.locale === "ar" ? "rtl" : "ltr"}>
+      <Navbar t={t} />
       <div
         className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-20"
         id="posts"
@@ -36,17 +40,18 @@ const Blogs = ({ posts }) => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
 export default Blogs;
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const posts = await getBlogPosts();
 
   return {
     props: {
+      ...(await serverSideTranslations(locale)),
       posts: posts,
     },
   };
