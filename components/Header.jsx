@@ -14,23 +14,12 @@ import { getItems } from "../slices/cartSlice";
 import NotifyDialog from "./OrderNotifyDialog";
 import ReactPlayer from "react-player";
 
-export default function Header({ scrollHandler, whyUs, t }) {
+export default function Header({ scrollHandler, whyUs, t, loggedIn }) {
   const cartItems = useSelector((state) => state.cart_items.value);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
-  const dispatch = useDispatch();
-  // const videoRef = useRef();
+
   const [menuOpened, setMenuOpened] = useState(false);
   const [cartOpened, setCartOpened] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const getCart = async () => {
-    setLoggedIn(await getToken());
-    const res = await getCartItems();
-    dispatch(getItems(res));
-  };
-  useEffect(() => {
-    getCart();
-  }, []);
 
   const handleClick = () => {
     setMenuOpened((prev) => !prev);

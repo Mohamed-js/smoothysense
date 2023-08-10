@@ -39,5 +39,10 @@
     "phone": "Phone number",
     "address": "Your address",
     "country": "Country",
-    "city": "City"
+    "city": "City",
+    "email": "Email",
+    "password": "Password",
+    "dont_have_account": "Don't have account?",
+    "already_have_account": "Already have account?",
+    "signup": "SignUp"
 }

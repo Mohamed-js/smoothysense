@@ -4,8 +4,11 @@ import { useState } from "react";
 import { userSignup } from "../../helpers";
 import { useRouter } from "next/router";
 import { setToken } from "../../auth";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const SignUp = () => {
+  const { t } = useTranslation();
   const [credentials, setCredentials] = useState({});
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
@@ -35,7 +38,7 @@ const SignUp = () => {
         />
       </div>
       <h1 className="text-center text-4xl font-bold my-3 text-green-500">
-        SignUp
+        {t("signup")}
       </h1>
       <form
         onSubmit={handleSubmit}
@@ -46,7 +49,7 @@ const SignUp = () => {
             {error}
           </h2>
         )}
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email"> {t("email")}</label>
         <input
           id="email"
           type="email"
@@ -61,7 +64,7 @@ const SignUp = () => {
           }}
         />
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password"> {t("password")}</label>
         <input
           id="password"
           type="password"
@@ -96,7 +99,7 @@ const SignUp = () => {
         </div>
         <br />
         <Link href="/login" className="underline">
-          <small>Already have account?</small> | Login
+          <small> {t("already_have_account")}</small> | {t("login")}
         </Link>
       </form>
     </div>
@@ -104,3 +107,11 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}

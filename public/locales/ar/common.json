@@ -39,5 +39,10 @@
     "phone": "رقم الهاتف",
     "address": "عنوانك",
     "country": "الدولة",
-    "city": "المدينة"
+    "city": "المدينة",
+    "email": "البريد الالكتروني",
+    "password": "كلمة السر",
+    "dont_have_account": "لا تمتلك حسابا؟",
+    "already_have_account": "بالفعل تمتلك حسابا؟",
+    "signup": "سجل معنا"
 }

@@ -15,8 +15,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Head>
-        <title>SmoothySense</title>
-        <link rel="shortcut icon" href="/logo-2.png" type="image/x-icon" />
+        <title>SMOOTHYSENSE</title>
+        <link rel="shortcut icon" href="/logoo2.png" type="image/x-icon" />
       </Head>
       <main className={`${changa.className}`}>
         <Component {...pageProps} />

@@ -9,6 +9,7 @@ import NotifyDialog from "../../components/NotifyDialog";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function Product({ product }) {
   const router = useRouter();
@@ -32,6 +33,11 @@ export default function Product({ product }) {
 
   return (
     <div dir={router.locale === "ar" ? "rtl" : "ltr"}>
+      <Head>
+        <title>
+          SMOOTHYSENSE - {product.title.toUpperCase().split("-")[0]}
+        </title>
+      </Head>
       <Navbar t={t} />
       <div className="flex mt-16 flex-col justify-between">
         <div className="mx-auto mt-16 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">

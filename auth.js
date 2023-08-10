@@ -5,7 +5,7 @@ export const setToken = (token) => {
 export const getToken = async () => {
   if (typeof window !== "undefined") {
     const token = JSON.parse(localStorage.getItem("smoothy-token"));
-
+    console.log(token);
     if (token) {
       const isValid = await isAuthenticated(token);
       if (isValid) {

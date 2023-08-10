@@ -9,7 +9,7 @@ function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, t }) {
   const [isLoading, setLoading] = useState(true);
   const [dialogOpened, setDialogOpened] = useState(false);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
@@ -61,7 +61,7 @@ export default function ProductCard({ product }) {
       </button>
 
       {dialogOpened && (
-        <CartDialog product={product} setDialogOpened={setDialogOpened} />
+        <CartDialog product={product} setDialogOpened={setDialogOpened} t={t} />
       )}
       {/* {notifyDialogOpened && (
         <NotifyDialog setDialogOpened={setNotifyDialogOpened} t={t} />

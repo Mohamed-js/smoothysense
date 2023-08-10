@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
 import HomeProductCard from "../components/HomeProductCard";
 import LeftHandedCard from "../components/LeftHandedCard";
@@ -7,16 +7,34 @@ import goal from "../public/goal.png";
 import natural from "../public/natural-icon.png";
 import experience from "../public/experience-icon.png";
 import { useRouter } from "next/router";
-import { getProducts } from "../helpers";
+import { getCartItems, getProducts } from "../helpers";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { getToken } from "../auth";
+import { getItems } from "../slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 export default function Gallery({ products }) {
+  const dispatch = useDispatch();
   const router = useRouter();
+  const [loggedIn, setLoggedIn] = useState(false);
   const { t } = useTranslation();
-  let productsRef = useRef<HTMLDivElement>();
-  let whyUsRef = useRef<HTMLDivElement>();
 
+  const getCart = async () => {
+    const token = await getToken();
+    setLoggedIn(token);
+    if (token) {
+      const res = await getCartItems(token);
+      dispatch(getItems(res));
+    }
+  };
+
+  useEffect(() => {
+    getCart();
+  }, []);
+
+  let productsRef = useRef();
+  let whyUsRef = useRef();
   const scrollHandler = (e) => {
     e.preventDefault();
 
@@ -41,9 +59,15 @@ export default function Gallery({ products }) {
     }
     router.push("/#whyus");
   };
+
   return (
     <div dir={router.locale === "ar" ? "rtl" : "ltr"}>
-      <Header scrollHandler={scrollHandler} whyUs={whyUsScroll} t={t} />
+      <Header
+        scrollHandler={scrollHandler}
+        whyUs={whyUsScroll}
+        t={t}
+        loggedIn={loggedIn}
+      />
       <div
         className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8"
         ref={productsRef}
@@ -103,6 +127,7 @@ export default function Gallery({ products }) {
 
 export async function getStaticProps(context) {
   const products = await getProducts();
+
   const { locale } = context;
   return {
     props: {

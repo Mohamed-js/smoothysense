@@ -4,8 +4,11 @@ import { useState } from "react";
 import { userLogin } from "../../helpers";
 import { useRouter } from "next/router";
 import { setToken } from "../../auth";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Login = () => {
+  const { t } = useTranslation();
   const [credentials, setCredentials] = useState({});
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
@@ -14,7 +17,6 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     const res = await userLogin(credentials);
-    console.log(res);
     if (res.message) {
       setLoading(false);
       setToken(res.token);
@@ -36,7 +38,7 @@ const Login = () => {
         />
       </div>
       <h1 className="text-center text-4xl font-bold my-3 text-green-500">
-        Login
+        {t("login")}
       </h1>
 
       <form
@@ -48,7 +50,7 @@ const Login = () => {
             {error}
           </h2>
         )}
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email"> {t("email")}</label>
         <input
           id="email"
           type="email"
@@ -62,7 +64,7 @@ const Login = () => {
             });
           }}
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">{t("password")}</label>
         <input
           id="password"
           type="password"
@@ -96,7 +98,7 @@ const Login = () => {
         </div>
         <br />
         <Link href="/signup" className="underline">
-          <small>Don't have account?</small> | SignUp
+          <small> {t("dont_have_account")}</small> | {t("signup")}
         </Link>
       </form>
     </div>
@@ -104,3 +106,11 @@ const Login = () => {
 };
 
 export default Login;
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}

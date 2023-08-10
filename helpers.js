@@ -66,16 +66,16 @@ export async function getBlogPost(slug) {
   }
 }
 
-export const getCartItems = async (setter) => {
+export const getCartItems = async (token) => {
   try {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${await getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
-    console.log(`Bearer ${await getToken()}`);
+    console.log(`Bearer ${token}`);
 
     const res = await fetch(host + `/cart-items`, options);
     return await res.json();
