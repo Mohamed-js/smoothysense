@@ -3,14 +3,14 @@ import { getItems } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { placeOrder } from "../helpers";
 
-const Checkout = ({ closeCart, openNotification, t }) => {
+const Checkout = ({ closeCart, openNotification, t, loggedIn }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     var formData = Object.fromEntries(new FormData(e.target));
-    const res = await placeOrder(formData);
+    const res = await placeOrder(formData, loggedIn);
     if ((res.message = "Successfully Placed Order")) {
       openNotification();
       dispatch(getItems([]));

@@ -9,18 +9,10 @@ function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function HomeProductCard({ product, t }) {
+export default function HomeProductCard({ product, t, loggedIn }) {
   const [isLoading, setLoading] = useState(true);
   const [dialogOpened, setDialogOpened] = useState(false);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-  useEffect(() => {
-    checktoken();
-  }, []);
-
-  async function checktoken() {
-    setLoggedIn(await getToken());
-  }
 
   const handleClick = () => {
     if (loggedIn) {

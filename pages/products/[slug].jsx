@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import CartDialog from "../../components/CartDialog";
-import { getProducts, getProduct } from "../../helpers";
+import { getProducts, getProduct, getCartItems } from "../../helpers";
 import { useState, useEffect } from "react";
 import { getToken } from "../../auth";
 import NotifyDialog from "../../components/NotifyDialog";
@@ -10,15 +10,27 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Head from "next/head";
-
+import { getItems } from "../../slices/cartSlice";
+import { useDispatch } from "react-redux";
 export default function Product({ product }) {
   const router = useRouter();
   const { t } = useTranslation();
   const [dialogOpened, setDialogOpened] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
+  const dispatch = useDispatch();
+
+  const getCart = async () => {
+    const token = await getToken();
+    setLoggedIn(token);
+    if (token) {
+      const res = await getCartItems(token);
+      dispatch(getItems(res));
+    }
+  };
+
   useEffect(() => {
-    checktoken();
+    getCart();
   }, []);
 
   async function checktoken() {
@@ -38,7 +50,7 @@ export default function Product({ product }) {
           SMOOTHYSENSE - {product.title.toUpperCase().split("-")[0]}
         </title>
       </Head>
-      <Navbar t={t} />
+      <Navbar t={t} loggedIn={loggedIn} />
       <div className="flex mt-16 flex-col justify-between">
         <div className="mx-auto mt-16 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
           <div className="mx-auto flex flex-col sm:flex-row">

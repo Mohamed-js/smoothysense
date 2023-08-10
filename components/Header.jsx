@@ -43,6 +43,7 @@ export default function Header({ scrollHandler, whyUs, t, loggedIn }) {
           cartItems={cartItems}
           openNotification={() => setNotifyDialogOpened(true)}
           t={t}
+          loggedIn={loggedIn}
         />
       )}
       {/* MENU */}

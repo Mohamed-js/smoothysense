@@ -75,8 +75,6 @@ export const getCartItems = async (token) => {
       },
     };
 
-    console.log(`Bearer ${token}`);
-
     const res = await fetch(host + `/cart-items`, options);
     return await res.json();
   } catch (error) {
@@ -84,12 +82,12 @@ export const getCartItems = async (token) => {
   }
 };
 
-export const addToCart = async (product, quantity) => {
+export const addToCart = async (product, quantity, token) => {
   try {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${await getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       method: "POST",
       body: JSON.stringify({ product, quantity }),
@@ -102,12 +100,12 @@ export const addToCart = async (product, quantity) => {
   }
 };
 
-export const removeFromCart = async (product) => {
+export const removeFromCart = async (product, token) => {
   try {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${await getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       method: "DELETE",
     };
@@ -119,12 +117,12 @@ export const removeFromCart = async (product) => {
   }
 };
 
-export const minusFromCart = async (product) => {
+export const minusFromCart = async (product, token) => {
   try {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${await getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       method: "PATCH",
     };
@@ -136,12 +134,12 @@ export const minusFromCart = async (product) => {
   }
 };
 
-export const placeOrder = async (order) => {
+export const placeOrder = async (order, token) => {
   try {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${await getToken()}`,
+        Authorization: `Bearer ${token}`,
       },
       method: "POST",
       body: JSON.stringify(order),

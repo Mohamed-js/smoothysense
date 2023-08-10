@@ -11,24 +11,13 @@ import { getItems } from "../slices/cartSlice";
 import NotifyDialog from "./OrderNotifyDialog";
 import { useRouter } from "next/router";
 
-const Navbar = ({ t }) => {
+const Navbar = ({ t, loggedIn }) => {
   const router = useRouter();
   const [menuOpened, setMenuOpened] = useState(false);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
   const [cartOpened, setCartOpened] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+
   const cartItems = useSelector((state) => state.cart_items.value);
-  const dispatch = useDispatch();
-
-  const getCart = async () => {
-    setLoggedIn(await getToken());
-    const res = await getCartItems();
-    dispatch(getItems(res));
-  };
-
-  useEffect(() => {
-    getCart();
-  }, []);
 
   const handleClick = () => {
     setMenuOpened((prev) => !prev);
@@ -52,6 +41,7 @@ const Navbar = ({ t }) => {
           cartItems={cartItems}
           openNotification={() => setNotifyDialogOpened(true)}
           t={t}
+          loggedIn={loggedIn}
         />
       )}
       {menuOpened && (
@@ -114,7 +104,7 @@ const Navbar = ({ t }) => {
               onClick={handleCartClick}
               className="mr-4 mb-1 text-green-500 relative"
             >
-              {cartItems.length > 0 && (
+              {cartItems && cartItems.length > 0 && (
                 <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[5px] w-5 h-5">
                   {cartItems.length}
                 </span>

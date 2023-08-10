@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { getItems } from "../slices/cartSlice";
 import Checkout from "./Checkout";
 
-const Cart = ({ closeCart, cartItems, openNotification, t }) => {
+const Cart = ({ closeCart, cartItems, openNotification, t, loggedIn }) => {
   const [checkoutOpened, setCheckoutOpened] = useState(false);
 
   return (
@@ -65,6 +65,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
                         key={item._id + item.product.title}
                         cartItems={cartItems}
                         t={t}
+                        loggedIn={loggedIn}
                       />
                     );
                   })}
@@ -135,6 +136,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
                 t={t}
                 closeCart={closeCart}
                 openNotification={openNotification}
+                loggedIn={loggedIn}
               />
             )}
 
@@ -157,12 +159,12 @@ const Cart = ({ closeCart, cartItems, openNotification, t }) => {
 
 export default Cart;
 
-export const CartCard = ({ item, t }) => {
+export const CartCard = ({ item, t, loggedIn }) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const DeleteProduct = async () => {
     setLoading(true);
-    const res = await removeFromCart(item.product._id);
+    const res = await removeFromCart(item.product._id, loggedIn);
     if ((res.message = "Successfully Removed")) {
       dispatch(getItems(res.cart_items));
       setLoading(false);
@@ -171,7 +173,7 @@ export const CartCard = ({ item, t }) => {
 
   const increaseProduct = async () => {
     setLoading(true);
-    const res = await addToCart(item.product._id, 1);
+    const res = await addToCart(item.product._id, 1, loggedIn);
     if ((res.message = "Successfully Added")) {
       dispatch(getItems(res.cart_items));
       setLoading(false);
@@ -180,7 +182,7 @@ export const CartCard = ({ item, t }) => {
 
   const decreaseProduct = async () => {
     setLoading(true);
-    const res = await minusFromCart(item.product._id);
+    const res = await minusFromCart(item.product._id, loggedIn);
     if ((res.message = "Successfully Minused")) {
       dispatch(getItems(res.cart_items));
       setLoading(false);
