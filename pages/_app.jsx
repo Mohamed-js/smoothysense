@@ -5,7 +5,6 @@ import { store } from "../store";
 import { Provider } from "react-redux";
 import { Readex_Pro } from "next/font/google";
 import { appWithTranslation } from "next-i18next";
-import Script from "next/script";
 import TagManager from "react-gtm-module";
 import { useEffect } from "react";
 
@@ -18,6 +17,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     TagManager.initialize({ gtmId: "GTM-TXXM49JZ" });
   }, []);
+
   return (
     <Provider store={store}>
       <Head>
