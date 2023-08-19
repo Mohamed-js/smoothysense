@@ -27,7 +27,7 @@ const steps = [
     ],
     refer: {
       link: "https://www.webteb.com/articles/%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1-%D9%85%D8%B3%D8%A7%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%B9%D8%B1_34820",
-      body: "اضغطي هنا لو مش عارفة مسامية شعرك",
+      body: "اضغطي هنا لو مش عارفة مسامية شعرك...",
     },
   },
   {
@@ -123,6 +123,7 @@ const Hair = () => {
             stepId={step.id}
             setUserAnswers={setUserAnswers}
             userAnswers={userAnswers}
+            refer={step.refer}
           />
         ))}
 
@@ -145,6 +146,7 @@ const Question = ({
   stepId,
   setUserAnswers,
   userAnswers,
+  refer,
 }) => {
   return (
     <div className="p-4 border-t-2">
@@ -162,6 +164,15 @@ const Question = ({
           />
         ))}
       </div>
+      {refer && (
+        <a
+          className="text-green-400 mt-2 block"
+          href={refer.link}
+          target="_blank"
+        >
+          <small>{refer.body}</small>
+        </a>
+      )}
     </div>
   );
 };
