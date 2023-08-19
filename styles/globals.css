@@ -13,31 +13,3 @@
 .max-h-300 {
   max-height: 300px;
 }
-
-.multistep-container {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.multistep-container :first-child {
-  align-items: center;
-}
-
-.multistep-container button {
-  margin: 0.5rem;
-  padding: 0.3rem 1rem;
-  border-radius: 4px;
-  color: white;
-}
-
-.multistep-container button:disabled,
-.multistep-container button[disabled] {
-  background-color: lightgray !important;
-}
-
-.multistep-container li:before {
-  background-color: limegreen;
-  color: white;
-}

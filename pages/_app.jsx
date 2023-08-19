@@ -8,7 +8,7 @@ import { appWithTranslation } from "next-i18next";
 import TagManager from "react-gtm-module";
 import { useEffect } from "react";
 
-const changa = Readex_Pro({
+const readex = Readex_Pro({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
         <title>SMOOTHYSENSE</title>
         <link rel="shortcut icon" href="/logoo2.png" type="image/x-icon" />
       </Head>
-      <main className={`${changa.className}`}>
+      <main className={`${readex.className}`}>
         <Component {...pageProps} />
         <Footer />
       </main>
