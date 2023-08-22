@@ -17,7 +17,6 @@ const CartDialog = ({ product, setDialogOpened, t, token }) => {
       token
     );
 
-    console.log(res);
     if (res.message === "Successfully Added") {
       dispatch(getItems(res.cart_items));
       setLoading(false);

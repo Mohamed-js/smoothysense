@@ -48,9 +48,7 @@ export default function HomeProductCard({ product, t, loggedIn, token }) {
             {product.title}
           </h3>
         </div>
-        {/* <p className="mt-1 text-md italic text-gray-500 line-clamp-5">
-          {product.description}
-        </p> */}
+
         <div className="flex justify-between items-center mt-2">
           <button
             className="bg-green-400 text-white rounded p-1 px-3 text-sm sm:text-base"
@@ -58,8 +56,8 @@ export default function HomeProductCard({ product, t, loggedIn, token }) {
           >
             {t("add_to_cart")}
           </button>
-          <p dir="ltr" className="text-sm sm:text-base">
-            {product.price} EGP
+          <p className="text-sm sm:text-base">
+            {product.price} {t("egp")}
           </p>
         </div>
       </div>
@@ -72,6 +70,7 @@ export default function HomeProductCard({ product, t, loggedIn, token }) {
           token={token}
         />
       )}
+
       {notifyDialogOpened && (
         <NotifyDialog setDialogOpened={setNotifyDialogOpened} t={t} />
       )}
