@@ -61,7 +61,12 @@ export default function ProductCard({ product, t }) {
       </button>
 
       {dialogOpened && (
-        <CartDialog product={product} setDialogOpened={setDialogOpened} t={t} />
+        <CartDialog
+          product={product}
+          setDialogOpened={setDialogOpened}
+          t={t}
+          token={loggedIn}
+        />
       )}
       {/* {notifyDialogOpened && (
         <NotifyDialog setDialogOpened={setNotifyDialogOpened} t={t} />

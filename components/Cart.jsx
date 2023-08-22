@@ -62,7 +62,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t, loggedIn }) => {
                       <CartCard
                         index={i}
                         item={item}
-                        key={item._id + item.product.title}
+                        key={item.id + item.title}
                         cartItems={cartItems}
                         t={t}
                         loggedIn={loggedIn}
@@ -87,7 +87,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t, loggedIn }) => {
                             {cartItems.reduce(
                               (accumulator, item) =>
                                 accumulator +
-                                item.quantity * item.product.price,
+                                item.user_product.quantity * item.price,
                               0
                             )}
                           </span>
@@ -111,7 +111,8 @@ const Cart = ({ closeCart, cartItems, openNotification, t, loggedIn }) => {
                           {" "}
                           {cartItems.reduce(
                             (accumulator, item) =>
-                              accumulator + item.quantity * item.product.price,
+                              accumulator +
+                              item.user_product.quantity * item.price,
                             0
                           )}
                         </span>
@@ -164,7 +165,7 @@ export const CartCard = ({ item, t, loggedIn }) => {
   const dispatch = useDispatch();
   const DeleteProduct = async () => {
     setLoading(true);
-    const res = await removeFromCart(item.product._id, loggedIn);
+    const res = await removeFromCart(item.user_product.id, loggedIn);
     if ((res.message = "Successfully Removed")) {
       dispatch(getItems(res.cart_items));
       setLoading(false);
@@ -173,7 +174,7 @@ export const CartCard = ({ item, t, loggedIn }) => {
 
   const increaseProduct = async () => {
     setLoading(true);
-    const res = await addToCart(item.product._id, 1, loggedIn);
+    const res = await addToCart(item.user_product.id, 1, loggedIn);
     if ((res.message = "Successfully Added")) {
       dispatch(getItems(res.cart_items));
       setLoading(false);
@@ -182,7 +183,7 @@ export const CartCard = ({ item, t, loggedIn }) => {
 
   const decreaseProduct = async () => {
     setLoading(true);
-    const res = await minusFromCart(item.product._id, loggedIn);
+    const res = await minusFromCart(item.user_product.id, loggedIn);
     if ((res.message = "Successfully Minused")) {
       dispatch(getItems(res.cart_items));
       setLoading(false);
@@ -191,24 +192,24 @@ export const CartCard = ({ item, t, loggedIn }) => {
 
   return (
     <>
-      <div key={item.product._id} className="pt-2">
+      <div key={item.id} className="pt-2">
         <div className="flex justify-between items-start py-3">
           <div className="flex gap-4">
             <div className="img-parent">
               <Image
-                src={item.product.image}
+                src={item.image}
                 width={80}
                 height={80}
-                alt={item.product.title}
+                alt={item.title}
                 className="rounded-md"
               />
             </div>
             <div>
               <h3 className="text-normal font-thin sm:text-xl capitalize text-gray-600">
-                {item.product.title}
+                {item.title}
               </h3>
               <h3 className="text-normal font-semibold sm:text-xl capitalize">
-                {item.product.price}{" "}
+                {item.price}{" "}
                 <span className="text-sm">
                   {t("egp")}/{t("unit")}
                 </span>
@@ -231,7 +232,7 @@ export const CartCard = ({ item, t, loggedIn }) => {
           <input
             className="w-full ease-in-out duration-500 p-3 outline-none hover:border-gray-300 border h-12"
             type="number"
-            value={item.quantity}
+            value={item.user_product.quantity}
             readOnly
           />
 

@@ -9,7 +9,7 @@ function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function HomeProductCard({ product, t, loggedIn }) {
+export default function HomeProductCard({ product, t, loggedIn, token }) {
   const [isLoading, setLoading] = useState(true);
   const [dialogOpened, setDialogOpened] = useState(false);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
@@ -65,7 +65,12 @@ export default function HomeProductCard({ product, t, loggedIn }) {
       </div>
 
       {dialogOpened && (
-        <CartDialog product={product} setDialogOpened={setDialogOpened} t={t} />
+        <CartDialog
+          product={product}
+          setDialogOpened={setDialogOpened}
+          t={t}
+          token={token}
+        />
       )}
       {notifyDialogOpened && (
         <NotifyDialog setDialogOpened={setNotifyDialogOpened} t={t} />

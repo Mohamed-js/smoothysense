@@ -17,6 +17,7 @@ export default function Product({ product }) {
   const { t } = useTranslation();
   const [dialogOpened, setDialogOpened] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [token, setToken] = useState();
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
   const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ export default function Product({ product }) {
     const token = await getToken();
     setLoggedIn(token);
     if (token) {
+      setToken(token);
       const res = await getCartItems(token);
       dispatch(getItems(res));
     }
@@ -91,6 +93,7 @@ export default function Product({ product }) {
                   product={product}
                   setDialogOpened={setDialogOpened}
                   t={t}
+                  token={token}
                 />
               )}
               {notifyDialogOpened && (

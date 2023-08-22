@@ -3,7 +3,7 @@ import { addToCart } from "../helpers";
 import { getItems } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 
-const CartDialog = ({ product, setDialogOpened, t }) => {
+const CartDialog = ({ product, setDialogOpened, t, token }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
@@ -11,8 +11,14 @@ const CartDialog = ({ product, setDialogOpened, t }) => {
     setLoading(true);
     e.preventDefault();
     var formData = Object.fromEntries(new FormData(e.target));
-    const res = await addToCart(formData.product_id, Number(formData.quantity));
-    if ((res.message = "Successfully Added")) {
+    const res = await addToCart(
+      formData.product_id,
+      Number(formData.quantity),
+      token
+    );
+
+    console.log(res);
+    if (res.message === "Successfully Added") {
       dispatch(getItems(res.cart_items));
       setLoading(false);
       setDialogOpened(false);
@@ -47,7 +53,7 @@ const CartDialog = ({ product, setDialogOpened, t }) => {
             type="hidden"
             name="product_id"
             id="product_id"
-            value={product._id}
+            value={product.id}
           />
           <br />
           <button

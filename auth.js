@@ -5,11 +5,9 @@ export const setToken = (token) => {
 export const getToken = async () => {
   if (typeof window !== "undefined") {
     const token = JSON.parse(localStorage.getItem("smoothy-token"));
-    console.log(token);
     if (token) {
       const isValid = await isAuthenticated(token);
       if (isValid) {
-        console.log(token);
         return token;
       } else {
         localStorage.removeItem("smoothy-token");
@@ -22,7 +20,8 @@ export const getToken = async () => {
 };
 
 async function isAuthenticated(token) {
-  const host = "https://smoothy-api.onrender.com";
+  // const host = "https://smoothy-api.onrender.com";
+  const host = "http://localhost:3000";
   try {
     const options = {
       headers: {

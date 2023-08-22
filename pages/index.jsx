@@ -19,11 +19,13 @@ export default function Gallery({ products }) {
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
   const { t } = useTranslation();
+  const [token, setToken] = useState();
 
   const getCart = async () => {
     const token = await getToken();
     setLoggedIn(token);
     if (token) {
+      setToken(token);
       const res = await getCartItems(token);
       dispatch(getItems(res));
     }
@@ -83,7 +85,7 @@ export default function Gallery({ products }) {
         {/* <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {products &&
             products.map((product) => (
-              <HomeProductCard product={product} key={product._id} />
+              <HomeProductCard product={product} key={product.id} />
             ))}
         </div> */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-5 lg:gap-10">
@@ -91,9 +93,10 @@ export default function Gallery({ products }) {
             products.map((product) => (
               <HomeProductCard
                 product={product}
-                key={product._id}
+                key={product.id}
                 t={t}
                 loggedIn={loggedIn}
+                token={token}
               />
             ))}
         </div>
