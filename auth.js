@@ -1,3 +1,5 @@
+import { host } from "./helpers";
+
 export const setToken = (token) => {
   localStorage.setItem("smoothy-token", JSON.stringify(token));
 };
@@ -20,8 +22,6 @@ export const getToken = async () => {
 };
 
 async function isAuthenticated(token) {
-  // const host = "https://smoothy-api.onrender.com";
-  const host = "http://localhost:4000";
   try {
     const options = {
       headers: {

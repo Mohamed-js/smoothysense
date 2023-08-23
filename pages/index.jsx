@@ -25,6 +25,7 @@ export default function Gallery({ products }) {
     const token = await getToken();
     setLoggedIn(token);
     if (token) {
+      getProducts(token);
       setToken(token);
       const res = await getCartItems(token);
       dispatch(getItems(res));

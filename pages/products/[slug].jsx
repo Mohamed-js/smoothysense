@@ -28,6 +28,7 @@ export default function Product({ product }) {
       setToken(token);
       const res = await getCartItems(token);
       dispatch(getItems(res));
+      await getProduct(product.slug, token);
     }
   };
 

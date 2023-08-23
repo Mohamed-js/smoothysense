@@ -1,14 +1,16 @@
-import { getToken } from "./auth";
-// const host = "https://smoothy-api.onrender.com";
-const host = "http://localhost:4000";
+// export const host = "https://smoothy-api.onrender.com";
+export const host = "http://localhost:4000";
 
-export async function getProducts() {
+export async function getProducts(token) {
   try {
     const options = {
       headers: {
         "Content-Type": "application/json",
       },
     };
+    if (token) {
+      options.headers["Authorization"] = `Bearer ${token}`;
+    }
 
     const res = await fetch(host + `/products`, options);
 
@@ -18,13 +20,18 @@ export async function getProducts() {
   }
 }
 
-export async function getProduct(slug) {
+export async function getProduct(slug, token) {
   try {
     const options = {
       headers: {
         "Content-Type": "application/json",
       },
     };
+    if (token) {
+      options.headers["Authorization"] = `Bearer ${token}`;
+    }
+    console.log(token);
+    console.log(options);
 
     const res = await fetch(host + `/products/${slug}`, options);
     return await res.json();
@@ -38,7 +45,7 @@ export async function getBlogPosts() {
     const options = {
       headers: {
         "Content-Type": "application/json",
-        authorization: ``,
+        Authorization: ``,
       },
       method: "GET",
       // Body if post request
