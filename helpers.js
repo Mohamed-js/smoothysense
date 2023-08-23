@@ -1,6 +1,6 @@
 import { getToken } from "./auth";
-const host = "https://smoothy-api.onrender.com";
-// const host = "http://localhost:3000";
+// const host = "https://smoothy-api.onrender.com";
+const host = "http://localhost:4000";
 
 export async function getProducts() {
   try {
@@ -146,7 +146,7 @@ export const placeOrder = async (order, token) => {
     };
 
     const res = await fetch(host + `/orders`, options);
-    // return await res.json();
+
     return { message: "Successfully Placed Order" };
   } catch (error) {
     console.log(error);

@@ -11,6 +11,7 @@ const Checkout = ({ closeCart, openNotification, t, loggedIn }) => {
 
     var formData = Object.fromEntries(new FormData(e.target));
     const res = await placeOrder(formData, loggedIn);
+
     if ((res.message = "Successfully Placed Order")) {
       openNotification();
       dispatch(getItems([]));

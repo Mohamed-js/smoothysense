@@ -53,7 +53,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t, loggedIn }) => {
                 </svg>
               </div>
             </header>
-            {console.log(cartItems)}
+
             {!checkoutOpened && (
               <>
                 {cartItems.length > 0 &&

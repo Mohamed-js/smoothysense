@@ -20,8 +20,8 @@ export const getToken = async () => {
 };
 
 async function isAuthenticated(token) {
-  const host = "https://smoothy-api.onrender.com";
-  // const host = "http://localhost:3000";
+  // const host = "https://smoothy-api.onrender.com";
+  const host = "http://localhost:4000";
   try {
     const options = {
       headers: {
