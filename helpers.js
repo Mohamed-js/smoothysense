@@ -1,5 +1,5 @@
-// export const host = "https://smoothy-api.onrender.com";
-export const host = "http://localhost:4000";
+export const host = "https://smoothy-api.onrender.com";
+// export const host = "http://localhost:4000";
 
 export async function getProducts(token) {
   try {
