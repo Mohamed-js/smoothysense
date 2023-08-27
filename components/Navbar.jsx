@@ -102,7 +102,7 @@ const Navbar = ({ t, loggedIn }) => {
             <Link
               href="/cart"
               onClick={handleCartClick}
-              className="mr-4 mb-1 text-green-500 relative"
+              className="mx-4 mb-1 text-green-500 relative"
             >
               {cartItems && cartItems.length > 0 && (
                 <span className="rounded-full bg-red-600 text-white flex items-center justify-center absolute top-[-5px] left-[5px] w-5 h-5">

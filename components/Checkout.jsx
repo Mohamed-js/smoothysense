@@ -2,8 +2,10 @@ import { useState } from "react";
 import { getItems } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { placeOrder } from "../helpers";
+import { useRouter } from "next/router";
 
 const Checkout = ({ closeCart, openNotification, t, loggedIn }) => {
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -13,9 +15,10 @@ const Checkout = ({ closeCart, openNotification, t, loggedIn }) => {
     const res = await placeOrder(formData, loggedIn);
 
     if ((res.message = "Successfully Placed Order")) {
-      openNotification();
-      dispatch(getItems([]));
+      // openNotification();
       closeCart();
+      dispatch(getItems([]));
+      router.push("/success");
     }
   };
 
@@ -24,7 +27,7 @@ const Checkout = ({ closeCart, openNotification, t, loggedIn }) => {
       <h1 className="text-center text-2xl font-semibold">{t("checkout")}</h1>
       <br />
       <form onSubmit={handleSubmit}>
-        <div className="flex justify-between">
+        {/* <div className="flex justify-between">
           <input
             type="text"
             name="first_name"
@@ -55,7 +58,22 @@ const Checkout = ({ closeCart, openNotification, t, loggedIn }) => {
             className="p-2 border rounded w-1/2 focus:outline mt-3"
             required
           />
-        </div>
+        </div> */}
+        <input
+          type="text"
+          name="first_name"
+          placeholder={t("first_name")}
+          className="p-2 border rounded w-[97%] focus:outline mt-3 mx-3"
+          required
+        />
+        <input
+          type="text"
+          name="city"
+          placeholder={t("city")}
+          className="p-2 border rounded w-[97%] focus:outline mt-3 mx-3"
+          required
+        />
+
         <input
           type="tel"
           name="phone"
@@ -72,7 +90,7 @@ const Checkout = ({ closeCart, openNotification, t, loggedIn }) => {
         ></textarea>
 
         <button
-          className="text-lg w-full bg-black text-white pt-4 pb-4 text-center "
+          className="text-lg w-full bg-black text-white pt-4 pb-4 text-center"
           data-variant="flat"
         >
           {t("confirm_order")}
