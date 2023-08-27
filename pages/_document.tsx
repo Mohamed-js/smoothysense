@@ -1,11 +1,11 @@
 import { Head, Html, Main, NextScript } from "next/document";
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html>
       <Head>
         <meta
           name="description"
-          content="The premiere natural self care products."
+          content="The premiere natural hair care products."
         />
       </Head>
       <body>
@@ -17,7 +17,6 @@ export default function Document() {
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-
         <Main />
         <NextScript />
       </body>

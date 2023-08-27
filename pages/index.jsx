@@ -98,6 +98,7 @@ export default function Gallery({ products }) {
                 t={t}
                 loggedIn={loggedIn}
                 token={token}
+                locale={router.locale}
               />
             ))}
         </div>

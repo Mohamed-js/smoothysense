@@ -9,7 +9,13 @@ function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function HomeProductCard({ product, t, loggedIn, token }) {
+export default function HomeProductCard({
+  product,
+  t,
+  loggedIn,
+  token,
+  locale,
+}) {
   const [isLoading, setLoading] = useState(true);
   const [dialogOpened, setDialogOpened] = useState(false);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
@@ -52,6 +58,9 @@ export default function HomeProductCard({ product, t, loggedIn, token }) {
         <div className="flex justify-between items-center mt-2">
           <button
             className="bg-green-400 text-white rounded p-1 px-3 text-sm sm:text-base"
+            id={product.slug}
+            locale={locale}
+            data-logged-in={loggedIn ? true : false}
             onClick={handleClick}
           >
             {t("add_to_cart")}
