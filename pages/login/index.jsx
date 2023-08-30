@@ -28,8 +28,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full min-h-[91vh]">
-      <div className="flex items-center h-48 relative w-full">
+    <div className="flex flex-col items-center justify-end h-full w-full min-h-[91vh]">
+      <div className="flex items-center h-32 relative w-full">
         <Image
           alt={"SmoothySense"}
           className="rounded-lg max-h-28 object-contain sm:max-h-none mb-10"

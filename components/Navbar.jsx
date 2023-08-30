@@ -50,20 +50,33 @@ const Navbar = ({ t, loggedIn }) => {
             <Link
               href="/login"
               className="my-5 outline outline-green-500 text-green-500 rounded p-1 px-4"
+              onClick={() => setMenuOpened(false)}
             >
               {t("login")}
             </Link>
           )}
-          <Link href="/" className="my-5 cursor-pointer">
+          <Link
+            href="/"
+            className="my-5 cursor-pointer"
+            onClick={() => setMenuOpened(false)}
+          >
             {t("home")}
           </Link>
-          <Link href="/#products" className="my-5 cursor-pointer">
+          <Link
+            href="/#products"
+            className="my-5 cursor-pointer"
+            onClick={() => setMenuOpened(false)}
+          >
             {t("our_products")}
           </Link>
           {/* <Link href="/blogs" className="my-5">
             Blog
           </Link> */}
-          <Link href="/#whyus" className="my-5 cursor-pointer">
+          <Link
+            href="/#whyus"
+            className="my-5 cursor-pointer"
+            onClick={() => setMenuOpened(false)}
+          >
             {t("why_us")}
           </Link>
         </div>

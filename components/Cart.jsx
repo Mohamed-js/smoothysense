@@ -195,7 +195,7 @@ export const CartCard = ({ item, t, loggedIn }) => {
       <div key={item.id} className="pt-2">
         <div className="flex justify-between items-start py-3">
           <div className="flex gap-4">
-            <div className="img-parent">
+            <div className="img-parent min-w-[100px]">
               <Image
                 src={item.image}
                 width={80}
@@ -205,7 +205,7 @@ export const CartCard = ({ item, t, loggedIn }) => {
               />
             </div>
             <div>
-              <h3 className="text-normal font-thin sm:text-xl capitalize text-gray-600">
+              <h3 className="text-sm font-thin sm:text-xl capitalize text-gray-600">
                 {item.title}
               </h3>
               <h3 className="text-normal font-semibold sm:text-xl capitalize">

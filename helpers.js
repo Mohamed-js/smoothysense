@@ -30,8 +30,6 @@ export async function getProduct(slug, token) {
     if (token) {
       options.headers["Authorization"] = `Bearer ${token}`;
     }
-    console.log(token);
-    console.log(options);
 
     const res = await fetch(host + `/products/${slug}`, options);
     return await res.json();

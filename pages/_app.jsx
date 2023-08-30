@@ -4,9 +4,11 @@ import Head from "next/head";
 import { store } from "../store";
 import { Provider } from "react-redux";
 import { Readex_Pro } from "next/font/google";
-import { appWithTranslation } from "next-i18next";
+import { appWithTranslation, useTranslation } from "next-i18next";
 import TagManager from "react-gtm-module";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
+import { getToken } from "../auth";
 
 const readex = Readex_Pro({
   weight: ["400", "500", "600", "700"],
@@ -14,8 +16,17 @@ const readex = Readex_Pro({
 });
 
 function MyApp({ Component, pageProps }) {
+  const [token, setToken] = useState(false);
+  const { t } = useTranslation();
+  const getUser = async () => {
+    const token = await getToken();
+    if (token) {
+      setToken(token);
+    }
+  };
   useEffect(() => {
     TagManager.initialize({ gtmId: "GTM-TXXM49JZ" });
+    getUser();
   }, []);
 
   return (
@@ -25,6 +36,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="shortcut icon" href="/logoo2.png" type="image/x-icon" />
       </Head>
       <main className={`${readex.className}`}>
+        <Navbar t={t} loggedIn={token} />
         <Component {...pageProps} />
         <Footer />
       </main>
@@ -33,3 +45,12 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default appWithTranslation(MyApp);
+
+export async function getStaticProps(context) {
+  const { locale } = context;
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}

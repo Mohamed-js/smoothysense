@@ -13,6 +13,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getToken } from "../auth";
 import { getItems } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
+import Navbar from "../components/Navbar";
 
 export default function Gallery({ products }) {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ export default function Gallery({ products }) {
   }, []);
 
   let productsRef = useRef();
-  let whyUsRef = useRef();
+
   const scrollHandler = (e) => {
     e.preventDefault();
 
@@ -51,26 +52,9 @@ export default function Gallery({ products }) {
     router.push("/#products");
   };
 
-  const whyUsScroll = (e) => {
-    e.preventDefault();
-    if (router.pathname === "/") {
-      // @ts-ignore
-      return whyUsRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-    router.push("/#whyus");
-  };
-
   return (
     <div dir={router.locale === "ar" ? "rtl" : "ltr"}>
-      <Header
-        scrollHandler={scrollHandler}
-        whyUs={whyUsScroll}
-        t={t}
-        loggedIn={loggedIn}
-      />
+      <Header scrollHandler={scrollHandler} t={t} loggedIn={loggedIn} />
       <div
         className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8"
         ref={productsRef}
@@ -105,7 +89,7 @@ export default function Gallery({ products }) {
         <br />
         <br />
         <hr />
-        <div className="text-center" ref={whyUsRef} id="whyus">
+        <div className="text-center" id="whyus">
           <p className="mt-1 text-4xl font-extrabold uppercase text-gray-900 sm:text-5xl sm:tracking-tight py-28 pb-4">
             {t("why_choose")}{" "}
             <span className="block text-green-500 sm:text-6xl">

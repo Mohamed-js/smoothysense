@@ -28,9 +28,9 @@ export default function HomeProductCard({
   };
 
   return (
-    <div className="group grid grid-cols-1 max-w-2xl mx-auto gap-2 home-card w-full rounded-md overflow-hidden">
-      <Link href={`/products/${product.slug}`} className="img-link">
-        <div className="aspect-w-9 aspect-h-10 w-full overflow-hidden bg-gray-200">
+    <div className="group max-w-2xl mx-auto home-card w-full rounded-md overflow-hidden relative flex flex-col">
+      <div className="aspect-w-9 aspect-h-10 w-full overflow-hidden bg-gray-200 max-h-[200px] mb-2">
+        <Link href={`/products/${product.slug}`} className="img-link">
           <Image
             alt="product image"
             src={product.image}
@@ -43,12 +43,13 @@ export default function HomeProductCard({
             )}
             onLoadingComplete={() => setLoading(false)}
           />
-        </div>
-      </Link>
-      <div className="info">
+        </Link>
+      </div>
+
+      <div className="info flex flex-col justify-between flex-1">
         <div className="text-base font-semibold text-gray-900">
           <h3
-            className="capitalize font-thin text-gray-600 leading-5 mt-1"
+            className="capitalize text-sm font-thin text-gray-600 leading-5"
             dir="ltr"
           >
             {product.title}
