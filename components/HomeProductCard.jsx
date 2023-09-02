@@ -3,8 +3,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import CartDialog from "./CartDialog";
 import NotifyDialog from "./NotifyDialog";
-import { getToken } from "../auth";
 
+import { useRouter } from "next/router";
 function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -19,6 +19,7 @@ export default function HomeProductCard({
   const [isLoading, setLoading] = useState(true);
   const [dialogOpened, setDialogOpened] = useState(false);
   const [notifyDialogOpened, setNotifyDialogOpened] = useState(false);
+  const router = useRouter();
 
   const handleClick = () => {
     if (loggedIn) {
@@ -47,28 +48,31 @@ export default function HomeProductCard({
       </div>
 
       <div className="info flex flex-col justify-between flex-1">
-        <div className="text-base font-semibold text-gray-900">
-          <h3
-            className="capitalize text-sm font-thin text-gray-600 leading-5"
-            dir="ltr"
-          >
-            {product.title}
-          </h3>
-        </div>
+        <h3
+          className="capitalize text-sm font-thin text-black leading-5"
+          dir="ltr"
+        >
+          {product.title}
+        </h3>
 
-        <div className="flex justify-between items-center mt-2">
-          <button
-            className="bg-green-400 text-white rounded p-1 px-3 text-sm sm:text-base"
-            id={product.slug}
-            locale={locale}
-            data-logged-in={loggedIn ? true : false}
-            onClick={handleClick}
-          >
-            {t("add_to_cart")}
-          </button>
-          <p className="text-sm sm:text-base">
-            {product.price} {t("egp")}
-          </p>
+        <div>
+          <h4 className="capitalize text-xs font-thin text-gray-500 leading-5">
+            {router.locale === "ar" ? product.ar_category : product.category}
+          </h4>
+          <div className="flex justify-between items-center mt-1">
+            <button
+              className="bg-green-400 text-white rounded p-1 px-3 text-sm sm:text-base"
+              id={product.slug}
+              locale={locale}
+              data-logged-in={loggedIn ? true : false}
+              onClick={handleClick}
+            >
+              {t("add_to_cart")}
+            </button>
+            <p className="text-sm sm:text-base">
+              {product.price} {t("egp")}
+            </p>
+          </div>
         </div>
       </div>
 

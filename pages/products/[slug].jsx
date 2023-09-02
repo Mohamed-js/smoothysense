@@ -63,14 +63,19 @@ export default function Product({ product }) {
             />
             <div className="mt-10 flex flex-col sm:mt-0 sm:mx-10">
               <h1
-                className="mt-1 text-xl font-semibold uppercase text-gray-600 sm:text-2xl sm:tracking-tight lg:text-3xl"
+                className="mt-1 text-xl font-semibold uppercase text-black sm:text-2xl sm:tracking-tight lg:text-3xl"
                 dir="ltr"
               >
                 {product.title}
               </h1>
-              <h1 className="mt-3 text-xl font-bold sm:text-2xl sm:tracking-tight lg:text-2xl">
+              <h2 className="capitalize text-xs font-thin text-gray-500 leading-5">
+                {router.locale === "ar"
+                  ? product.ar_category
+                  : product.category}
+              </h2>
+              <h3 className="mt-3 text-xl font-bold sm:text-2xl sm:tracking-tight lg:text-2xl">
                 {product.price} {t("egp")}
-              </h1>
+              </h3>
               <div className="mt-10 mb-5 border-t border-gray-200 pt-10 font-bold">
                 {t("description")}
               </div>
