@@ -9,6 +9,7 @@ import TagManager from "react-gtm-module";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { getToken } from "../auth";
+import { Analytics } from "@vercel/analytics/react";
 
 const readex = Readex_Pro({
   weight: ["400", "500", "600", "700"],
@@ -40,6 +41,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
         <Footer />
       </main>
+      <Analytics />
     </Provider>
   );
 }
