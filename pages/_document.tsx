@@ -10,8 +10,9 @@ export default function Document() {
         <link rel="shortcut icon" href="/logoo2.png" type="image/x-icon" />
         <meta
           name="description"
-          content="Discover SmoothySense's range of natural hair care products, including lotions, creams, serums, and hair masks. Experience effective and safe solutions for your hair care needs. Shop now!"
+          content="Discover the power of nature's finest ingredients with SmoothySense. Our luxurious hair care products will make your hair shine with radiant vitality."
         />
+        <meta name="robots" content="index, follow" />
       </Head>
       <body>
         <noscript>

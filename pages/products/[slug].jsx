@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import CartDialog from "../../components/CartDialog";
@@ -46,10 +47,15 @@ export default function Product({ product }) {
     setNotifyDialogOpened(true);
   };
 
+  const metaTitle = `SMOOTHYSENSE - ${product.title.toUpperCase()}`;
+  const metaDescription =
+    router.locale === "ar" ? product.ar_description : product.description;
+
   return (
     <div dir={router.locale === "ar" ? "rtl" : "ltr"}>
       <Head>
-        <title>SMOOTHYSENSE - {product.title.toUpperCase()}</title>
+        <title>{metaTitle}</title>
+        <meta name="description" content={metaDescription} />
       </Head>
       <div className="flex mt-16 flex-col justify-between">
         <div className="mx-auto mt-16 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">

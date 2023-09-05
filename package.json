@@ -22,7 +22,8 @@
     "react-lottie-player": "^1.5.5",
     "react-multistep": "^5.5.9",
     "react-player": "^2.12.0",
-    "react-redux": "^8.1.2"
+    "react-redux": "^8.1.2",
+    "react-schemaorg": "^2.0.0"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.0",
