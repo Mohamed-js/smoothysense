@@ -32,10 +32,6 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-      <Head>
-        <title>SMOOTHYSENSE</title>
-        <link rel="shortcut icon" href="/logoo2.png" type="image/x-icon" />
-      </Head>
       <main className={`${readex.className}`}>
         <Navbar t={t} loggedIn={token} />
         <Component {...pageProps} />
