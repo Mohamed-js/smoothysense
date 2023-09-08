@@ -13,6 +13,10 @@ export default function Document() {
           content="Discover the power of nature's finest ingredients with SmoothySense. Our luxurious hair care products will make your hair shine with radiant vitality."
         />
         <meta name="robots" content="index, follow" />
+        <meta
+          name="google-site-verification"
+          content="q8E6FLngnTLf-xhSQLBr4t4H5GQyln8LIed8ccMI-k0"
+        />
       </Head>
       <body>
         <noscript>
