@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { setToken } from "../../auth";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from "next/head";
 
 const SignUp = () => {
   const { t } = useTranslation();
@@ -28,8 +29,13 @@ const SignUp = () => {
     setLoading(false);
   };
 
+  const metaTitle = `SmoothySense - Signup`;
+
   return (
     <div className="flex flex-col items-center justify-end h-full w-full min-h-[91vh]">
+      <Head>
+        <title>{metaTitle}</title>
+      </Head>
       <div className="flex items-center h-32 relative w-full">
         <Image
           alt={"SmoothySense"}

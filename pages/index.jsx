@@ -13,9 +13,9 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getToken } from "../auth";
 import { getItems } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
-import Navbar from "../components/Navbar";
+import Head from "next/head";
 
-export default function Gallery({ products }) {
+export default function HomePage({ products }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
@@ -51,9 +51,13 @@ export default function Gallery({ products }) {
     }
     router.push("/#products");
   };
+  const metaTitle = `SmoothySense | Natural Hair Care Products for Healthier, Beautiful Hair.`;
 
   return (
     <div dir={router.locale === "ar" ? "rtl" : "ltr"}>
+      <Head>
+        <title>{metaTitle}</title>
+      </Head>
       <Header scrollHandler={scrollHandler} t={t} loggedIn={loggedIn} />
       <div
         className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8"
@@ -67,12 +71,7 @@ export default function Gallery({ products }) {
             </p>
           </div>
         </div>
-        {/* <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {products &&
-            products.map((product) => (
-              <HomeProductCard product={product} key={product.id} />
-            ))}
-        </div> */}
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-5 lg:gap-10">
           {products &&
             products.map((product) => (

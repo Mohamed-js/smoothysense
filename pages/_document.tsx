@@ -3,10 +3,6 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <title>
-          SmoothySense: Natural Hair Care Products for Healthier, Beautiful
-          Hair.
-        </title>
         <link rel="shortcut icon" href="/logoo2.png" type="image/x-icon" />
         <meta
           name="description"

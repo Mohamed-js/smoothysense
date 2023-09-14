@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { getItems } from "../../slices/cartSlice";
 import { useDispatch } from "react-redux";
+
 export default function Product({ product }) {
   const router = useRouter();
   const { t } = useTranslation();
@@ -47,7 +48,7 @@ export default function Product({ product }) {
     setNotifyDialogOpened(true);
   };
 
-  const metaTitle = `SMOOTHYSENSE - ${product.title.toUpperCase()}`;
+  const metaTitle = `SmoothySense - ${product.title.toUpperCase()}`;
   const metaDescription =
     router.locale === "ar" ? product.ar_description : product.description;
 
