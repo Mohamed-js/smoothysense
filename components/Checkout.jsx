@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { placeOrder } from "../helpers";
 import { useRouter } from "next/router";
 
-const Checkout = ({ closeCart, openNotification, t, loggedIn }) => {
+const Checkout = ({ closeCart, openNotification, t, loggedIn, token }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -12,7 +12,12 @@ const Checkout = ({ closeCart, openNotification, t, loggedIn }) => {
     e.preventDefault();
 
     var formData = Object.fromEntries(new FormData(e.target));
-    const res = await placeOrder(formData, loggedIn);
+    let res;
+    if (token) {
+      res = await placeOrder(formData, token);
+    } else {
+      res = await placeOrder(formData, loggedIn);
+    }
 
     if ((res.message = "Successfully Placed Order")) {
       // openNotification();

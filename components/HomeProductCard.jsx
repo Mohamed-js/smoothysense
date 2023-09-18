@@ -29,7 +29,7 @@ export default function HomeProductCard({
   };
 
   return (
-    <div className="group max-w-2xl mx-auto home-card w-full rounded-md overflow-hidden relative flex flex-col">
+    <div className="shadow-md md:shadow-none group max-w-2xl mx-auto home-card w-full rounded-md overflow-hidden relative flex flex-col">
       <div className="aspect-w-9 aspect-h-10 w-full overflow-hidden bg-gray-200 max-h-[200px] mb-2">
         <Link href={`/products/${product.slug}`} className="img-link">
           <Image
@@ -47,7 +47,7 @@ export default function HomeProductCard({
         </Link>
       </div>
 
-      <div className="info flex flex-col justify-between flex-1">
+      <div className="info flex flex-col justify-between flex-1 p-2 pt-0">
         <h3
           className="capitalize text-sm font-thin text-black leading-5"
           dir="ltr"

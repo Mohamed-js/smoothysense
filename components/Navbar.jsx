@@ -18,6 +18,7 @@ const Navbar = ({ t, loggedIn }) => {
   const [cartOpened, setCartOpened] = useState(false);
 
   const cartItems = useSelector((state) => state.cart_items.value);
+  const token = useSelector((state) => state.user.value);
 
   const handleClick = () => {
     setMenuOpened((prev) => !prev);
@@ -42,11 +43,12 @@ const Navbar = ({ t, loggedIn }) => {
           openNotification={() => setNotifyDialogOpened(true)}
           t={t}
           loggedIn={loggedIn}
+          token={token}
         />
       )}
       {menuOpened && (
         <div className="flex flex-col items-center pt-20 top-20 left-0 h-screen w-full bg-[#ffffffe3]  text-2xl font-bold z-20 sm:hidden fixed">
-          {!loggedIn && (
+          {!loggedIn && !token && (
             <Link
               href="/login"
               className="my-5 outline outline-green-500 text-green-500 rounded p-1 px-4"
@@ -111,7 +113,7 @@ const Navbar = ({ t, loggedIn }) => {
           </Link>
         </div>
         <div className="sm:hidden items-center text-green-500 flex">
-          {loggedIn && (
+          {(loggedIn || token) && (
             <Link
               href="/cart"
               onClick={handleCartClick}
@@ -128,7 +130,7 @@ const Navbar = ({ t, loggedIn }) => {
           <FaBars size={20} onClick={handleClick} />
         </div>
         <div className="hidden sm:flex items-end">
-          {loggedIn ? (
+          {loggedIn || token ? (
             <div className="flex relative">
               <Link
                 href="/cart"

@@ -6,7 +6,14 @@ import { useDispatch } from "react-redux";
 import { getItems } from "../slices/cartSlice";
 import Checkout from "./Checkout";
 
-const Cart = ({ closeCart, cartItems, openNotification, t, loggedIn }) => {
+const Cart = ({
+  closeCart,
+  cartItems,
+  openNotification,
+  t,
+  loggedIn,
+  token,
+}) => {
   const [checkoutOpened, setCheckoutOpened] = useState(false);
 
   return (
@@ -66,6 +73,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t, loggedIn }) => {
                         cartItems={cartItems}
                         t={t}
                         loggedIn={loggedIn}
+                        token={token}
                       />
                     );
                   })}
@@ -138,6 +146,7 @@ const Cart = ({ closeCart, cartItems, openNotification, t, loggedIn }) => {
                 closeCart={closeCart}
                 openNotification={openNotification}
                 loggedIn={loggedIn}
+                token={token}
               />
             )}
 
@@ -160,12 +169,18 @@ const Cart = ({ closeCart, cartItems, openNotification, t, loggedIn }) => {
 
 export default Cart;
 
-export const CartCard = ({ item, t, loggedIn }) => {
+export const CartCard = ({ item, t, loggedIn, token }) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const DeleteProduct = async () => {
     setLoading(true);
-    const res = await removeFromCart(item.user_product.id, loggedIn);
+    let res;
+    if (token) {
+      res = await removeFromCart(item.user_product.id, token);
+    } else {
+      res = await removeFromCart(item.user_product.id, loggedIn);
+    }
+
     if ((res.message = "Successfully Removed")) {
       dispatch(getItems(res.cart_items));
       setLoading(false);
@@ -174,7 +189,13 @@ export const CartCard = ({ item, t, loggedIn }) => {
 
   const increaseProduct = async () => {
     setLoading(true);
-    const res = await addToCart(item.user_product.id, 1, loggedIn);
+    let res;
+    if (token) {
+      res = await addToCart(item.user_product.id, 1, token);
+    } else {
+      res = await addToCart(item.user_product.id, 1, loggedIn);
+    }
+
     if ((res.message = "Successfully Added")) {
       dispatch(getItems(res.cart_items));
       setLoading(false);
@@ -183,7 +204,13 @@ export const CartCard = ({ item, t, loggedIn }) => {
 
   const decreaseProduct = async () => {
     setLoading(true);
-    const res = await minusFromCart(item.user_product.id, loggedIn);
+    let res;
+    if (token) {
+      res = await minusFromCart(item.user_product.id, token);
+    } else {
+      res = await minusFromCart(item.user_product.id, loggedIn);
+    }
+
     if ((res.message = "Successfully Minused")) {
       dispatch(getItems(res.cart_items));
       setLoading(false);
