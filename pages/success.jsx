@@ -3,6 +3,7 @@ import Link from "next/link";
 import Lottie from "react-lottie-player";
 import lottieJson from "./success.json";
 import { FaRegCheckCircle } from "react-icons/fa";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const Success = () => {
   return (
     <div className="h-[90vh] flex flex-col items-center justify-center p-4">
