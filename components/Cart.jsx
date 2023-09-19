@@ -205,6 +205,7 @@ export const CartCard = ({ item, t, loggedIn, token }) => {
   const decreaseProduct = async () => {
     setLoading(true);
     let res;
+
     if (token) {
       res = await minusFromCart(item.user_product.id, token);
     } else {
@@ -268,16 +269,17 @@ export const CartCard = ({ item, t, loggedIn, token }) => {
               loading && "bg-gray-200 text-black cursor-wait"
             }`}
             style={{
-              cursor: item.quantity <= 1 ? "not-allowed" : "pointer",
+              cursor:
+                item.user_product.quantity <= 1 ? "not-allowed" : "pointer",
             }}
             onClick={() => {
-              if (item.quantity <= 1) {
+              if (item.user_product.quantity <= 1) {
                 return;
               } else {
                 decreaseProduct();
               }
             }}
-            disabled={loading}
+            disabled={loading || item.user_product.quantity <= 1}
           >
             -
           </button>

@@ -23,6 +23,8 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     const res = await userLogin(credentials);
+    console.log(credentials);
+    console.log(res);
     if (res.message) {
       setLoading(false);
       setToken(res.token);

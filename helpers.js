@@ -1,4 +1,4 @@
-export const host = "https://smoothy-api.onrender.com";
+export const host = "https://knowledgeable-helpful-bubbler.glitch.me";
 // export const host = "http://localhost:4000";
 
 export async function getProducts(token) {
