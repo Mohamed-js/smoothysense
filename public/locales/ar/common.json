@@ -44,5 +44,10 @@
     "password": "كلمة السر",
     "dont_have_account": "لا تمتلك حسابا؟",
     "already_have_account": "بالفعل تمتلك حسابا؟",
-    "signup": "سجل معنا"
+    "signup": "سجل معنا",
+    "promo_code": "كود الخصم",
+    "i_have_promo_code": "أريد استعمال كود الخصم",
+    "invalid_promocode": "كود الخصم غير صحيح.",
+    "outdated_promocode": "كود الخصم منتهي الصلاحية.",
+    "consumed_promocode": "قد تم استهلاك كود الخصم"
 }

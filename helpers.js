@@ -1,4 +1,5 @@
-export const host = "https://knowledgeable-helpful-bubbler.glitch.me";
+export const host = "https://honey-invited-beechnut.glitch.me";
+// export const host = "https://knowledgeable-helpful-bubbler.glitch.me";
 // export const host = "http://localhost:4000";
 
 export async function getProducts(token) {
@@ -151,8 +152,7 @@ export const placeOrder = async (order, token) => {
     };
 
     const res = await fetch(host + `/orders`, options);
-
-    return { message: "Successfully Placed Order" };
+    return await res.json();
   } catch (error) {
     console.log(error);
   }

@@ -44,5 +44,10 @@
     "password": "Password",
     "dont_have_account": "Don't have account?",
     "already_have_account": "Already have account?",
-    "signup": "SignUp"
+    "signup": "SignUp",
+    "promo_code": "Promo Code",
+    "i_have_promo_code": "I want to use a promo code",
+    "invalid_promocode": "The promo code is invalid.",
+    "outdated_promocode": "The promo code is outdated.",
+    "consumed_promocode": "The promo code is consumed."
 }

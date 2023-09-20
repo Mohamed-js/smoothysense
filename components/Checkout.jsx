@@ -8,6 +8,9 @@ const Checkout = ({ closeCart, openNotification, t, loggedIn, token }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const [withPromoCode, setWithPromoCode] = useState(false);
+  const [error, setError] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -19,11 +22,21 @@ const Checkout = ({ closeCart, openNotification, t, loggedIn, token }) => {
       res = await placeOrder(formData, loggedIn);
     }
 
-    if ((res.message = "Successfully Placed Order")) {
+    if (res && res.message && res.message === "Successfully Placed Order") {
       // openNotification();
       closeCart();
       dispatch(getItems([]));
-      router.push("/success");
+      return router.push("/success");
+    }
+
+    if (res && res.error && res.error === "invalid promocode") {
+      return setError(t("invalid_promocode"));
+    }
+    if (res && res.error && res.error === "outdated promocode") {
+      return setError(t("outdated_promocode"));
+    }
+    if (res && res.error && res.error === "consumed promocode") {
+      return setError(t("consumed_promocode"));
     }
   };
 
@@ -78,7 +91,6 @@ const Checkout = ({ closeCart, openNotification, t, loggedIn, token }) => {
           className="p-2 border rounded w-[97%] focus:outline mt-3 mx-3"
           required
         />
-
         <input
           type="tel"
           name="phone"
@@ -93,6 +105,30 @@ const Checkout = ({ closeCart, openNotification, t, loggedIn, token }) => {
           className="p-2 border rounded w-[97%] focus:outline mt-3 mb-1 mx-3"
           required
         ></textarea>
+        <br />
+        {!withPromoCode && (
+          <p
+            onClick={() => setWithPromoCode(true)}
+            className="text-sm underline mb-2 mt-3 mx-3 cursor-pointer"
+          >
+            {t("i_have_promo_code")}
+          </p>
+        )}
+        {withPromoCode && (
+          <>
+            <input
+              type="text"
+              name="promo_code"
+              placeholder={t("promo_code")}
+              className="p-2 border rounded w-[97%] focus:outline mt-3 mx-3 mb-3"
+            />
+            {error && (
+              <p className="text-sm underline mb-2 mt-3 mx-3 text-red-500">
+                {error}
+              </p>
+            )}
+          </>
+        )}
 
         <button
           className="text-lg w-full bg-black text-white pt-4 pb-4 text-center"

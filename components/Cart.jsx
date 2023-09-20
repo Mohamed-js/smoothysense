@@ -5,6 +5,7 @@ import { addToCart, minusFromCart, removeFromCart } from "../helpers";
 import { useDispatch } from "react-redux";
 import { getItems } from "../slices/cartSlice";
 import Checkout from "./Checkout";
+import { useRouter } from "next/router";
 
 const Cart = ({
   closeCart,
@@ -15,9 +16,12 @@ const Cart = ({
   token,
 }) => {
   const [checkoutOpened, setCheckoutOpened] = useState(false);
-
+  const router = useRouter();
   return (
-    <div className="h-full w-full fixed top-0 left-0 flex justify-center items-center z-50 bg-[#17171771]">
+    <div
+      dir={router.locale === "ar" ? "rtl" : "ltr"}
+      className="h-full w-full fixed top-0 left-0 flex justify-center items-center z-50 bg-[#17171771]"
+    >
       <div className="fixed top-0 bottom-0 left-0 right-0 z-50 h-full box-border outline-2 outline outline-transparent outline-offset-2">
         <div className="absolute top-0 right-0 bottom-0 left-0 ">
           <div
@@ -28,7 +32,7 @@ const Cart = ({
             <header className="sticky top-0 bg-white mb-4 flex justify-between items-center py-4">
               <button
                 aria-label="Close"
-                className="hover:text-accent-5 transition ease-in-out duration-150 flex items-center focus:outline-none mr-6"
+                className="hover:text-accent-5 transition ease-in-out duration-150 flex items-center focus:outline-none"
               >
                 <div
                   className="flex justify-center items-center"
