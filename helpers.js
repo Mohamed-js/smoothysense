@@ -1,4 +1,4 @@
-export const host = "https://honey-invited-beechnut.glitch.me";
+export const host = "https://lucky-industrious-fortnight.glitch.me";
 // export const host = "https://knowledgeable-helpful-bubbler.glitch.me";
 // export const host = "http://localhost:4000";
 
