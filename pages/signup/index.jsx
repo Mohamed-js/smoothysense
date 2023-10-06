@@ -8,6 +8,8 @@ import { setToken } from "../../auth";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
+import { useDispatch } from "react-redux";
+import { storeToken } from "../../slices/userSlice";
 
 const SignUp = () => {
   const { t } = useTranslation();
@@ -15,6 +17,8 @@ const SignUp = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -22,6 +26,7 @@ const SignUp = () => {
     if (res.message) {
       setLoading(false);
       setToken(res.token);
+      dispatch(storeToken(res.token));
       router.push("/");
       return;
     }

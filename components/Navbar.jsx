@@ -81,6 +81,14 @@ const Navbar = ({ t, loggedIn }) => {
           >
             {t("why_us")}
           </Link>
+          <Link
+            href={router.asPath}
+            className="my-5 outline outline-green-500 text-green-500 rounded p-1 px-4 cursor-pointer"
+            locale={t("lang_to")}
+            onClick={() => setMenuOpened(false)}
+          >
+            {t("lang")}
+          </Link>
         </div>
       )}
       <div className="flex justify-between p-4 w-full z-10 fixed top-0 left-0 bg-white items-center sm:shadow-md">
