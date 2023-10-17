@@ -66,6 +66,7 @@ export default function HomeProductCard({
               locale={locale}
               data-logged-in={loggedIn ? true : false}
               onClick={handleClick}
+              data-price={product.price}
             >
               {t("add_to_cart")}
             </button>
